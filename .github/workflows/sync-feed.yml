@@ -1,0 +1,52 @@
+name: Sync Okazii public feed
+
+on:
+  push:
+    paths:
+      - '.github/workflows/sync-feed.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout public repository
+        uses: actions/checkout@v4
+
+      - name: Download current feed from private repository
+        env:
+          GH_TOKEN: ${{ secrets.OKAZII_FEED_SYNC_TOKEN }}
+        run: |
+          set -euo pipefail
+          curl --fail --location --silent --show-error \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github.raw+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/julianmuzykarz-collab/sellasist-okazii-feed/contents/okazii.xml?ref=main" \
+            -o okazii.xml
+          python - <<'PY'
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+          p = Path('okazii.xml')
+          if not p.exists() or p.stat().st_size < 1000000:
+              raise SystemExit('Feed download failed or file is too small')
+          ET.parse(p)
+          print(p.stat().st_size)
+          PY
+
+      - name: Commit feed if changed
+        run: |
+          set -euo pipefail
+          git config user.name "okazii-feed-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add okazii.xml
+          if git diff --cached --quiet; then
+            echo "Feed unchanged"
+            exit 0
+          fi
+          git commit -m "Update Okazii feed"
+          git push
