@@ -1,11 +1,12 @@
 name: Sync Okazii public feed
-# Controlled live Sellasist test after repository secrets were configured.
 
 on:
   push:
     paths:
       - '.github/workflows/sync-feed.yml'
   workflow_dispatch:
+  schedule:
+    - cron: '*/30 * * * *'
 
 permissions:
   contents: write
