@@ -9,26 +9,67 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: okazii-public-feed-sync
+  cancel-in-progress: true
+
 jobs:
   sync:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
+    env:
+      SELLASIST_ACCOUNT: ${{ secrets.SELLASIST_ACCOUNT }}
+      SELLASIST_API_KEY: ${{ secrets.SELLASIST_API_KEY }}
+      OKAZII_MAX_AMOUNT: "100"
+      OKAZII_PRICE_MULTIPLIER: "1.45"
+      OKAZII_PRICE_ADD_RON: "0"
+      STOCK_BUFFER: "0"
+      MIN_MATCH_RATE: "0.95"
     steps:
       - name: Checkout public repository
         uses: actions/checkout@v5
 
-      - name: Download and normalize current feed from private repository
+      - name: Download canonical feed and Sellasist sync logic
         env:
           GH_TOKEN: ${{ secrets.OKAZII_FEED_SYNC_TOKEN }}
         run: |
           set -euo pipefail
-          curl --fail --location --silent --show-error \
-            -H "Authorization: Bearer ${GH_TOKEN}" \
-            -H "Accept: application/vnd.github.raw+json" \
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-            "https://api.github.com/repos/julianmuzykarz-collab/sellasist-okazii-feed/contents/okazii.xml?ref=main" \
-            -o okazii.xml
+          mkdir -p scripts
 
+          download_private() {
+            src="$1"
+            dst="$2"
+            curl --fail --location --silent --show-error \
+              -H "Authorization: Bearer ${GH_TOKEN}" \
+              -H "Accept: application/vnd.github.raw+json" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              "https://api.github.com/repos/julianmuzykarz-collab/sellasist-okazii-feed/contents/${src}?ref=main" \
+              -o "${dst}"
+          }
+
+          download_private "okazii.xml" "okazii.xml"
+          download_private "mapping.json" "mapping.json"
+          download_private "scripts/update_feed.py" "scripts/update_feed.py"
+
+          test -s okazii.xml
+          test -s mapping.json
+          test -s scripts/update_feed.py
+
+      - name: Refresh live prices and stock from Sellasist when configured
+        run: |
+          set -euo pipefail
+          if [ -z "${SELLASIST_ACCOUNT:-}" ] || [ -z "${SELLASIST_API_KEY:-}" ]; then
+            echo "SELLASIST_ACCOUNT / SELLASIST_API_KEY are not configured in this public repository yet."
+            echo "Skipping live refresh and publishing the latest canonical private feed only."
+            exit 0
+          fi
+
+          python scripts/update_feed.py
+          echo "Live Sellasist price and stock refresh completed."
+
+      - name: Normalize and validate Okazii public feed
+        run: |
+          set -euo pipefail
           python - <<'PY'
           import xml.etree.ElementTree as ET
           from decimal import Decimal, InvalidOperation
@@ -64,9 +105,6 @@ jobs:
                   root.remove(auction)
                   removed_zero_stock += 1
 
-          # These exact UNIQUEID values were returned by Okazii in the
-          # 2026-09-01 duplicate-offer report. Keep the already accepted
-          # counterpart and suppress only the rejected duplicate.
           reported_duplicate_uids = {
               '675-1112657940',
               'SL65652',
@@ -84,10 +122,6 @@ jobs:
                   root.remove(auction)
                   removed_reported_duplicates += 1
 
-          # The inventory generator historically emitted the same product into
-          # two Okazii categories. Okazii treats that as a duplicate offer.
-          # Prevent future repeats by keeping only the first offer when the same
-          # SKU+GTIN appears again under a different category.
           seen_product_keys = {}
           removed_cross_category_duplicates = 0
           for auction in list(root.findall('AUCTION')):
