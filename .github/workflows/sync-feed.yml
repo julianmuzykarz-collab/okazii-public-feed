@@ -31,6 +31,7 @@ jobs:
 
           python - <<'PY'
           import xml.etree.ElementTree as ET
+          from decimal import Decimal, InvalidOperation
           from pathlib import Path
 
           p = Path('okazii.xml')
@@ -55,7 +56,27 @@ jobs:
           if not auctions:
               raise SystemExit('No AUCTION elements found')
 
+          # Okazii rejects offers with AMOUNT=0 as "Cantitate invalida".
+          # Keep zero-stock offers in the private canonical feed so they can
+          # become active again later, but do not publish them to Okazii.
+          removed_zero_stock = 0
+          for auction in list(auctions):
+              amount_node = auction.find('AMOUNT')
+              raw_amount = (amount_node.text or '').strip() if amount_node is not None else ''
+              try:
+                  amount = Decimal(raw_amount.replace(',', '.'))
+              except (InvalidOperation, AttributeError):
+                  raise SystemExit(f'Invalid AMOUNT value: {raw_amount!r}')
+              if amount <= 0:
+                  root.remove(auction)
+                  removed_zero_stock += 1
+
+          auctions = root.findall('AUCTION')
+          if not auctions:
+              raise SystemExit('No positive-stock AUCTION elements remain')
+
           required = ('UNIQUEID', 'TITLE', 'CATEGORY', 'DESCRIPTION', 'CURRENCY', 'PRICE', 'AMOUNT')
+          seen_unique_ids = set()
           for idx, auction in enumerate(auctions, 1):
               missing = [tag for tag in required if auction.find(tag) is None]
               photos = auction.find('PHOTOS')
@@ -63,6 +84,21 @@ jobs:
                   missing.append('PHOTOS/URL')
               if missing:
                   raise SystemExit(f'AUCTION #{idx} missing required tags: {", ".join(missing)}')
+
+              uid = (auction.findtext('UNIQUEID') or '').strip()
+              if not uid:
+                  raise SystemExit(f'AUCTION #{idx} has empty UNIQUEID')
+              if uid in seen_unique_ids:
+                  raise SystemExit(f'Duplicate UNIQUEID in feed: {uid}')
+              seen_unique_ids.add(uid)
+
+              raw_amount = (auction.findtext('AMOUNT') or '').strip()
+              try:
+                  amount = Decimal(raw_amount.replace(',', '.'))
+              except InvalidOperation:
+                  raise SystemExit(f'AUCTION #{idx} has invalid AMOUNT: {raw_amount!r}')
+              if amount <= 0:
+                  raise SystemExit(f'AUCTION #{idx} still has non-positive AMOUNT: {raw_amount!r}')
 
           try:
               ET.indent(tree, space='  ')
@@ -72,7 +108,11 @@ jobs:
 
           # Parse once more from disk to ensure the final written file is valid XML.
           ET.parse(p)
-          print(f'validated_auctions={len(auctions)} size_bytes={p.stat().st_size}')
+          print(
+              f'validated_auctions={len(auctions)} '
+              f'removed_zero_stock={removed_zero_stock} '
+              f'size_bytes={p.stat().st_size}'
+          )
           PY
 
       - name: Commit feed if changed
