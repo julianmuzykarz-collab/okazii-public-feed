@@ -41,10 +41,6 @@ jobs:
           tree = ET.parse(p)
           root = tree.getroot()
 
-          # Okazii's XML import manual defines schema tags in uppercase.
-          # The source feed historically used mixed/lower-case tags, so normalize
-          # every XML element tag. Escaped HTML inside DESCRIPTION is plain text
-          # and is therefore left untouched.
           for elem in root.iter():
               if isinstance(elem.tag, str):
                   elem.tag = elem.tag.upper()
@@ -56,9 +52,6 @@ jobs:
           if not auctions:
               raise SystemExit('No AUCTION elements found')
 
-          # Okazii rejects offers with AMOUNT=0 as "Cantitate invalida".
-          # Keep zero-stock offers in the private canonical feed so they can
-          # become active again later, but do not publish them to Okazii.
           removed_zero_stock = 0
           for auction in list(auctions):
               amount_node = auction.find('AMOUNT')
@@ -105,8 +98,6 @@ jobs:
           except AttributeError:
               pass
           tree.write(p, encoding='utf-8', xml_declaration=True)
-
-          # Parse once more from disk to ensure the final written file is valid XML.
           ET.parse(p)
           print(
               f'validated_auctions={len(auctions)} '
@@ -123,7 +114,14 @@ jobs:
           git add okazii.xml
           if git diff --cached --quiet; then
             echo "Feed unchanged"
-            exit 0
+          else
+            git commit -m "Update Okazii feed"
+            git push
           fi
-          git commit -m "Update Okazii feed"
-          git push
+
+      - name: Purge jsDelivr branch cache
+        run: |
+          set -euo pipefail
+          curl --fail --location --silent --show-error \
+            "https://purge.jsdelivr.net/gh/julianmuzykarz-collab/okazii-public-feed@main/okazii.xml"
+          echo
