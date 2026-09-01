@@ -56,6 +56,32 @@ jobs:
           test -s mapping.json
           test -s scripts/update_feed.py
 
+      - name: Normalize Sellasist account URL
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import os
+          from urllib.parse import urlparse
+
+          raw = os.environ.get('SELLASIST_ACCOUNT', '').strip()
+          if not raw:
+              raise SystemExit('SELLASIST_ACCOUNT is empty')
+
+          candidate = raw if '://' in raw else 'https://' + raw
+          parsed = urlparse(candidate)
+          host = (parsed.hostname or '').strip().strip('.')
+          if not host:
+              raise SystemExit('SELLASIST_ACCOUNT does not contain a valid host/account')
+
+          if '.' not in host:
+              host = host + '.sellasist.pl'
+
+          base = f'https://{host}/api/v1'
+          with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as fh:
+              fh.write('SELLASIST_BASE_URL=' + base + '\n')
+          print('Sellasist API base normalized without exposing secret value.')
+          PY
+
       - name: Refresh live prices and stock from Sellasist when configured
         run: |
           set -euo pipefail
