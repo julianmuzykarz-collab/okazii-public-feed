@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - '.github/workflows/sync-feed.yml'
+      - 'price-drop-approvals.json'
   workflow_dispatch:
   schedule:
     - cron: '*/30 * * * *'
@@ -27,9 +28,16 @@ jobs:
       OKAZII_PRICE_ADD_RON: "0"
       STOCK_BUFFER: "0"
       MIN_MATCH_RATE: "0.95"
+      MAX_PRICE_DROP_PCT: "15"
     steps:
       - name: Checkout public repository
         uses: actions/checkout@v5
+
+      - name: Preserve currently published feed
+        run: |
+          set -euo pipefail
+          test -s okazii.xml
+          cp okazii.xml previous_public_okazii.xml
 
       - name: Download canonical feed and Sellasist sync logic
         env:
@@ -211,6 +219,109 @@ jobs:
               f'removed_cross_category_duplicates={removed_cross_category_duplicates} '
               f'size_bytes={p.stat().st_size}'
           )
+          PY
+
+      - name: Block unapproved price drops over 15 percent
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import os
+          import xml.etree.ElementTree as ET
+          from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
+          from pathlib import Path
+
+          old_path = Path('previous_public_okazii.xml')
+          new_path = Path('okazii.xml')
+          approvals_path = Path('price-drop-approvals.json')
+          if not old_path.is_file() or not new_path.is_file():
+              raise SystemExit('Price guard cannot compare old and new feed')
+
+          limit_pct = Decimal(os.environ.get('MAX_PRICE_DROP_PCT', '15'))
+          limit_ratio = limit_pct / Decimal('100')
+
+          def money(value):
+              try:
+                  return Decimal(str(value).strip().replace(',', '.')).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
+              except (InvalidOperation, AttributeError):
+                  return None
+
+          def offers(path):
+              root = ET.parse(path).getroot()
+              result = {}
+              for node in root.iter():
+                  if not isinstance(node.tag, str) or node.tag.split('}', 1)[-1].upper() != 'AUCTION':
+                      continue
+                  fields = {}
+                  for child in list(node):
+                      if isinstance(child.tag, str):
+                          fields[child.tag.split('}', 1)[-1].upper()] = (child.text or '').strip()
+                  uid = fields.get('UNIQUEID', '')
+                  price = money(fields.get('PRICE', ''))
+                  if uid and price is not None:
+                      result[uid] = {
+                          'price': price,
+                          'sku': fields.get('SKU', ''),
+                          'title': fields.get('TITLE', ''),
+                      }
+              return result
+
+          old = offers(old_path)
+          new = offers(new_path)
+
+          approvals = set()
+          if approvals_path.is_file():
+              payload = json.loads(approvals_path.read_text(encoding='utf-8'))
+              for item in payload.get('approvals', []):
+                  uid = str(item.get('unique_id', '')).strip()
+                  from_price = money(item.get('from_price', ''))
+                  to_price = money(item.get('to_price', ''))
+                  if uid and from_price is not None and to_price is not None:
+                      approvals.add((uid, from_price, to_price))
+
+          blocked = []
+          approved = []
+          for uid, current in new.items():
+              previous = old.get(uid)
+              if not previous:
+                  continue
+              old_price = previous['price']
+              new_price = current['price']
+              if old_price <= 0 or new_price >= old_price:
+                  continue
+              drop_ratio = (old_price - new_price) / old_price
+              if drop_ratio <= limit_ratio:
+                  continue
+              entry = (uid, old_price, new_price)
+              row = {
+                  'unique_id': uid,
+                  'sku': current['sku'],
+                  'title': current['title'],
+                  'from_price': f'{old_price:.2f}',
+                  'to_price': f'{new_price:.2f}',
+                  'drop_pct': f'{(drop_ratio * 100):.2f}',
+              }
+              if entry in approvals:
+                  approved.append(row)
+              else:
+                  blocked.append(row)
+
+          if approved:
+              print('PRICE_DROP_APPROVED_BEGIN')
+              print(json.dumps(approved, ensure_ascii=False, indent=2))
+              print('PRICE_DROP_APPROVED_END')
+
+          if blocked:
+              print('PRICE_DROP_BLOCKED_BEGIN')
+              print(json.dumps(blocked, ensure_ascii=False, indent=2))
+              print('PRICE_DROP_BLOCKED_END')
+              print(
+                  f'Blocked {len(blocked)} price decrease(s) above {limit_pct}%.'
+                  ' Public feed was NOT changed. User approval is required.'
+              )
+              raise SystemExit(42)
+
+          print(f'Price-drop guard passed: no unapproved decrease above {limit_pct}%.')
           PY
 
       - name: Commit feed if changed
