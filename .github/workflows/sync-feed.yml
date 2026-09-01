@@ -1,4 +1,5 @@
 name: Sync Okazii public feed
+# Controlled live Sellasist test after repository secrets were configured.
 
 on:
   push:
