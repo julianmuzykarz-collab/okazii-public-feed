@@ -1,13 +1,10 @@
 name: Sync Okazii public feed
 
 on:
+  workflow_dispatch:
   push:
     paths:
-      - '.github/workflows/sync-feed.yml'
       - 'price-drop-approvals.json'
-  workflow_dispatch:
-  schedule:
-    - cron: '17 */2 * * *'
 
 permissions:
   contents: write
