@@ -1,8 +1,158 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<!--
-  PHH/Pigu public XML feed endpoint.
-  This placeholder intentionally contains no products yet.
-  Replace with validated Sellasist -> PHH feed before adding the URL in PMP.
--->
 <products>
+  <product>
+    <category-id>138</category-id>
+    <category-name><![CDATA[Dziecko / Zabawki / Lalki i akcesoria / Lalki]]></category-name>
+    <title><![CDATA[Lėlė jojikė su arkliu, judančiomis rankomis ir kojomis, didelis rinkinys]]></title>
+    <title-lv><![CDATA[Jātnieces lelle ar zirgu, kustīgām rokām un kājām, liels komplekts]]></title-lv>
+    <title-ee><![CDATA[Ratsanukunukk hobusega, liikuvate käte ja jalgadega, suur komplekt]]></title-ee>
+    <long-description><![CDATA[<p>Didelis žaidimų rinkinys su jojikės lėle ir arkliu.</p><ul><li>Komplekte: didelė tamsiaplaukė lėlė, baltas arklys, balnas, taurė ir originali pakuotė.</li><li>Lėlė turi judančias galūnes ir riešus, todėl ją galima pasodinti ant arklio.</li><li>Arklys baltas, su violetiniais plaukais ir karčiais.</li><li>Rekomenduojamas amžius: 3+.</li></ul>]]></long-description>
+    <long-description-lv><![CDATA[<p>Liels rotaļu komplekts ar jātnieces lelli un zirgu.</p><ul><li>Komplektā: liela tumšmataina lelle, balts zirgs, segli, kauss un oriģinālais iepakojums.</li><li>Lellei ir kustīgas ekstremitātes un plaukstu locītavas, tāpēc to var uzsēdināt uz zirga.</li><li>Zirgs ir balts ar violetiem matiem un krēpēm.</li><li>Ieteicamais vecums: 3+.</li></ul>]]></long-description-lv>
+    <long-description-ee><![CDATA[<p>Suur mängukomplekt ratsanukunuku ja hobusega.</p><ul><li>Komplektis: suur tumedapäine nukk, valge hobune, sadul, karikas ja originaalpakend.</li><li>Nukul on liikuvad jäsemed ja randmed, mistõttu saab ta hobuse selga istuma panna.</li><li>Hobune on valge, lillade juuste ja lakaga.</li><li>Soovitatav vanus: 3+.</li></ul>]]></long-description-ee>
+    <colours>
+      <colour>
+        <images>
+          <image><url>https://imge.pl/p/332695/n/0df4e0032449d0f54a6a9da1b1622943.jpg</url></image>
+        </images>
+        <modifications>
+          <modification>
+            <weight>1</weight>
+            <length>0.4</length>
+            <height>0.07</height>
+            <width>0.32</width>
+            <attributes>
+              <barcodes>
+                <barcode><![CDATA[5905249815215]]></barcode>
+              </barcodes>
+              <supplier-code><![CDATA[KQ098A CZARNA]]></supplier-code>
+            </attributes>
+          </modification>
+        </modifications>
+      </colour>
+    </colours>
+  </product>
+  <product>
+    <category-id>177</category-id>
+    <category-name><![CDATA[Dziecko / Zabawki / Kolejki i pociągi]]></category-name>
+    <title><![CDATA[Vaikiškas traukinio rinkinys su lokomotyvu, 3 vagonais ir bėgiais]]></title>
+    <title-lv><![CDATA[Bērnu vilciena komplekts ar lokomotīvi, 3 vagoniem un sliedēm]]></title-lv>
+    <title-ee><![CDATA[Laste rongikomplekt veduri, 3 vaguni ja rööbastega]]></title-ee>
+    <long-description><![CDATA[<p>Vaikiškas traukinio rinkinys su lokomotyvu, trimis vagonais ir bėgiais.</p><ul><li>Lokomotyvas juda automatiškai ir maitinamas 1 AA baterija; baterija nepridedama.</li><li>Vagonai sujungiami magnetais: savivartis, betono maišyklė ir kranas.</li><li>Rekomenduojamas amžius: 3+.</li><li>Pakuotės matmenys: 21 × 5 × 28 cm.</li></ul>]]></long-description>
+    <long-description-lv><![CDATA[<p>Bērnu vilciena komplekts ar lokomotīvi, trim vagoniem un sliedēm.</p><ul><li>Lokomotīve brauc automātiski un darbojas ar 1 AA bateriju; baterija nav iekļauta.</li><li>Vagoni savienojas ar magnētiem: pašizgāzējs, betona maisītājs un celtnis.</li><li>Ieteicamais vecums: 3+.</li><li>Iepakojuma izmēri: 21 × 5 × 28 cm.</li></ul>]]></long-description-lv>
+    <long-description-ee><![CDATA[<p>Laste rongikomplekt veduri, kolme vaguni ja rööbastega.</p><ul><li>Vedur liigub automaatselt ja töötab 1 AA patareiga; patarei ei kuulu komplekti.</li><li>Vagunid ühenduvad magnetitega: kallur, betoonisegisti ja kraana.</li><li>Soovitatav vanus: 3+.</li><li>Pakendi mõõdud: 21 × 5 × 28 cm.</li></ul>]]></long-description-ee>
+    <colours>
+      <colour>
+        <images>
+          <image><url>https://imge.pl/p/332695/n/d1dca6327a9749c8b4d3e11e0a4c6ba1.jpg</url></image>
+        </images>
+        <modifications>
+          <modification>
+            <weight>1</weight>
+            <length>0.21</length>
+            <height>0.28</height>
+            <width>0.05</width>
+            <attributes>
+              <barcodes>
+                <barcode><![CDATA[5905249813907]]></barcode>
+              </barcodes>
+              <supplier-code><![CDATA[18008C-1]]></supplier-code>
+            </attributes>
+          </modification>
+        </modifications>
+      </colour>
+    </colours>
+  </product>
+  <product>
+    <category-id>188</category-id>
+    <category-name><![CDATA[Dziecko / Zabawki / Lalki i akcesoria / Głowy do stylizacji]]></category-name>
+    <title><![CDATA[Lėlės galva šukuosenoms ir makiažui su aksesuarais]]></title>
+    <title-lv><![CDATA[Lelles galva frizūrām un grimam ar piederumiem]]></title-lv>
+    <title-ee><![CDATA[Nukupea soengute ja meigi tegemiseks koos tarvikutega]]></title-ee>
+    <long-description><![CDATA[<p>Kūrybinis rinkinys šukuosenoms ir makiažui su lėlės galva.</p><ul><li>Rinkinyje yra plaukų segtukų ir papuošalų, prisegamų spalvotų sruogų, šukos ir makiažo paletė.</li><li>Galvos matmenys: 21 × 18 × 10 cm.</li><li>Pakuotės matmenys: 27 × 28 × 12 cm.</li><li>Amžius: 3+. CE ženklinimas.</li></ul>]]></long-description>
+    <long-description-lv><![CDATA[<p>Radošs frizūru un grima komplekts ar lelles galvu.</p><ul><li>Komplektā ir matu sprādzes un rotājumi, pievienojamas krāsainas matu šķipsnas, ķemme un grima palete.</li><li>Galvas izmēri: 21 × 18 × 10 cm.</li><li>Iepakojuma izmēri: 27 × 28 × 12 cm.</li><li>Vecums: 3+. CE marķējums.</li></ul>]]></long-description-lv>
+    <long-description-ee><![CDATA[<p>Loominguline soengu- ja meigikomplekt nukupeaga.</p><ul><li>Komplektis on juukseklambrid ja -kaunistused, kinnitatavad värvilised juuksesalgud, kamm ja meigipalett.</li><li>Pea mõõdud: 21 × 18 × 10 cm.</li><li>Pakendi mõõdud: 27 × 28 × 12 cm.</li><li>Vanus: 3+. CE-märgis.</li></ul>]]></long-description-ee>
+    <colours>
+      <colour>
+        <images>
+          <image><url>https://imge.pl/p/332695/n/647ecdbaae92fc1400ff4ded0ca1a940.jpg</url></image>
+        </images>
+        <modifications>
+          <modification>
+            <weight>1</weight>
+            <length>0.27</length>
+            <height>0.12</height>
+            <width>0.28</width>
+            <attributes>
+              <barcodes>
+                <barcode><![CDATA[5905178379413]]></barcode>
+              </barcodes>
+              <supplier-code><![CDATA[1322]]></supplier-code>
+            </attributes>
+          </modification>
+        </modifications>
+      </colour>
+    </colours>
+  </product>
+  <product>
+    <category-id>189</category-id>
+    <category-name><![CDATA[Dziecko / Zabawki / Edukacyjne / Zabawki interaktywne]]></category-name>
+    <title><![CDATA[Interaktyvi šokanti ir dainuojanti varlytė YJ-3008]]></title>
+    <title-lv><![CDATA[Interaktīva dejojoša un dziedoša vardīte YJ-3008]]></title-lv>
+    <title-ee><![CDATA[Interaktiivne tantsiv ja laulev konn YJ-3008]]></title-ee>
+    <long-description><![CDATA[<p>Interaktyvi varlytė YJ-3008 šoka, šviečia ir groja melodijas.</p><ul><li>Šviesos efektai LED akyse ir rankose.</li><li>Maitinimas: 3 AA baterijos; baterijos nepridedamos.</li><li>Žaislo matmenys: 20 × 18 × 10 cm.</li><li>Pakuotės matmenys: 20 × 15 × 11 cm.</li><li>Amžius: nuo 12 mėn. CE ženklinimas.</li></ul>]]></long-description>
+    <long-description-lv><![CDATA[<p>Interaktīvā vardīte YJ-3008 dejo, spīd un atskaņo melodijas.</p><ul><li>LED gaismas efekti acīs un rokās.</li><li>Barošana: 3 AA baterijas; baterijas nav iekļautas.</li><li>Rotaļlietas izmēri: 20 × 18 × 10 cm.</li><li>Iepakojuma izmēri: 20 × 15 × 11 cm.</li><li>Vecums: no 12 mēnešiem. CE marķējums.</li></ul>]]></long-description-lv>
+    <long-description-ee><![CDATA[<p>Interaktiivne konn YJ-3008 tantsib, helendab ja mängib meloodiaid.</p><ul><li>LED-valgusefektid silmades ja kätes.</li><li>Toide: 3 AA patareid; patareid ei kuulu komplekti.</li><li>Mänguasja mõõdud: 20 × 18 × 10 cm.</li><li>Pakendi mõõdud: 20 × 15 × 11 cm.</li><li>Vanus: alates 12 kuust. CE-märgis.</li></ul>]]></long-description-ee>
+    <colours>
+      <colour>
+        <images>
+          <image><url>https://imge.pl/p/332695/n/8187d07f9e1d3c94a8153a3f3beb570d.jpg</url></image>
+        </images>
+        <modifications>
+          <modification>
+            <weight>0.2</weight>
+            <length>0.2</length>
+            <height>0.11</height>
+            <width>0.15</width>
+            <attributes>
+              <barcodes>
+                <barcode><![CDATA[2281300488172]]></barcode>
+              </barcodes>
+              <supplier-code><![CDATA[YJ-3008]]></supplier-code>
+            </attributes>
+          </modification>
+        </modifications>
+      </colour>
+    </colours>
+  </product>
+  <product>
+    <category-id>131</category-id>
+    <category-name><![CDATA[Dziecko / Zabawki / Figurki / Dinozaury]]></category-name>
+    <title><![CDATA[Interaktyvus dinozauras drakonas vaikšto, šviečia ir leidžia garus]]></title>
+    <title-lv><![CDATA[Interaktīvs dinozaurs pūķis staigā, spīd un izlaiž tvaiku]]></title-lv>
+    <title-ee><![CDATA[Interaktiivne dinosaurus-draakon kõnnib, helendab ja tekitab auru]]></title-ee>
+    <long-description><![CDATA[<p>Interaktyvus dinozauras-drakonas vaikšto, juda, skleidžia riaumojimo garsus, šviečia ir leidžia garus.</p><ul><li>Į žaislą galima įpilti vandens naudojant pridedamą pipetę.</li><li>Maitinimas: 3 AA baterijos; baterijos nepridedamos.</li><li>Žaislo matmenys: apie 33 × 23 × 7 cm.</li><li>Pakuotės matmenys: 28 × 16 × 12 cm.</li><li>Amžius: 3+. CE ženklinimas.</li></ul>]]></long-description>
+    <long-description-lv><![CDATA[<p>Interaktīvs dinozaurs-pūķis staigā, kustas, izdod rūkšanas skaņas, spīd un izlaiž tvaiku.</p><ul><li>Rotaļlietā var iepildīt ūdeni, izmantojot komplektā iekļauto pipeti.</li><li>Barošana: 3 AA baterijas; baterijas nav iekļautas.</li><li>Rotaļlietas izmēri: apm. 33 × 23 × 7 cm.</li><li>Iepakojuma izmēri: 28 × 16 × 12 cm.</li><li>Vecums: 3+. CE marķējums.</li></ul>]]></long-description-lv>
+    <long-description-ee><![CDATA[<p>Interaktiivne dinosaurus-draakon kõnnib, liigub, teeb möirgamise hääli, helendab ja tekitab auru.</p><ul><li>Mänguasja saab lisada vett komplektis oleva pipeti abil.</li><li>Toide: 3 AA patareid; patareid ei kuulu komplekti.</li><li>Mänguasja mõõdud: u 33 × 23 × 7 cm.</li><li>Pakendi mõõdud: 28 × 16 × 12 cm.</li><li>Vanus: 3+. CE-märgis.</li></ul>]]></long-description-ee>
+    <colours>
+      <colour>
+        <images>
+          <image><url>https://imge.pl/p/332695/n/e2e774386f1f33d1752fa6a880db6901.jpg</url></image>
+        </images>
+        <modifications>
+          <modification>
+            <weight>0.6</weight>
+            <length>0.28</length>
+            <height>0.12</height>
+            <width>0.16</width>
+            <attributes>
+              <barcodes>
+                <barcode><![CDATA[2281300652542]]></barcode>
+              </barcodes>
+              <supplier-code><![CDATA[3863]]></supplier-code>
+            </attributes>
+          </modification>
+        </modifications>
+      </colour>
+    </colours>
+  </product>
 </products>
