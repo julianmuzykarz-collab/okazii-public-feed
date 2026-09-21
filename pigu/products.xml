@@ -279,4 +279,35 @@
       </colour>
     </colours>
   </product>
+  <product>
+    <category-id>209</category-id>
+    <category-name><![CDATA[Dziecko/Zabawki/Majsterkowanie/Warsztaty]]></category-name>
+    <title><![CDATA[Vaikiškas žaislinis grandininis pjūklas su judančia gumine grandine]]></title>
+    <title-lv><![CDATA[Bērnu rotaļu motorzāģis ar kustīgu gumijas ķēdi]]></title-lv>
+    <title-ee><![CDATA[Laste mängumootorsaag liikuva kummiketiga]]></title-ee>
+    <long-description><![CDATA[<p>Vaikiškas žaislinis pjūklas su judančia gumine grandine ir garso efektais.</p><ul><li>Guminė grandinė juda žaislo veikimo metu.</li><li>Garso efektai imituoja pjovimą ir variklio darbą.</li><li>Maitinimas: 3 × AA 1,5 V baterijos; baterijos nepridedamos.</li><li>Žaislo matmenys: 37 × 11 × 16 cm.</li><li>Pakuotės matmenys: 40 × 20 × 10 cm.</li><li>Svoris su pakuote: 600 g. Amžius: 3+.</li></ul>]]></long-description>
+    <long-description-lv><![CDATA[<p>Bērnu rotaļu zāģis ar kustīgu gumijas ķēdi un skaņas efektiem.</p><ul><li>Gumijas ķēde kustas rotaļlietas darbības laikā.</li><li>Skaņas efekti imitē zāģēšanu un motora darbību.</li><li>Barošana: 3 × AA 1,5 V baterijas; baterijas nav iekļautas.</li><li>Rotaļlietas izmēri: 37 × 11 × 16 cm.</li><li>Iepakojuma izmēri: 40 × 20 × 10 cm.</li><li>Svars ar iepakojumu: 600 g. Vecums: 3+.</li></ul>]]></long-description-lv>
+    <long-description-ee><![CDATA[<p>Laste mängusaag liikuva kummiketiga ja heliefektidega.</p><ul><li>Kummikett liigub mänguasja töötamise ajal.</li><li>Heliefektid matkivad saagimist ja mootori tööd.</li><li>Toide: 3 × AA 1,5 V patareid; patareid ei kuulu komplekti.</li><li>Mänguasja mõõdud: 37 × 11 × 16 cm.</li><li>Pakendi mõõdud: 40 × 20 × 10 cm.</li><li>Kaal koos pakendiga: 600 g. Vanus: 3+.</li></ul>]]></long-description-ee>
+    <colours>
+      <colour>
+        <images>
+          <image><url>https://imge.pl/p/332695/n/5efe65af1003dfcb569a730308aeb6ee.png</url></image>
+        </images>
+        <modifications>
+          <modification>
+            <weight>0.6</weight>
+            <length>0.4</length>
+            <height>0.1</height>
+            <width>0.2</width>
+            <attributes>
+              <barcodes>
+                <barcode><![CDATA[5905249818070]]></barcode>
+              </barcodes>
+              <supplier-code><![CDATA[192G1 zielona]]></supplier-code>
+            </attributes>
+          </modification>
+        </modifications>
+      </colour>
+    </colours>
+  </product>
 </products>
