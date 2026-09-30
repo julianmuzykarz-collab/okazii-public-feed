@@ -3,10 +3,10 @@
 Public endpoint for the PHH Marketplace XML product feed.
 
 Primary feed URL:
-- https://raw.githubusercontent.com/julianmuzykarz-collab/okazii-public-feed/main/pigu/feed.xml
+- https://raw.githubusercontent.com/julianmuzykarz-collab/okazii-public-feed/main/pigu/products.xml
 
 Compatibility alias:
-- https://raw.githubusercontent.com/julianmuzykarz-collab/okazii-public-feed/main/pigu/products.xml
+- https://raw.githubusercontent.com/julianmuzykarz-collab/okazii-public-feed/main/pigu/feed.xml
 
 Source system: Sellasist.
 Target languages: Lithuanian (LT), Latvian (LV), Estonian (EE).
