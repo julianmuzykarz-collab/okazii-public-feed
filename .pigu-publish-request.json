@@ -1,4 +1,5 @@
 {
   "url": "https://sdmntprdenmarkeast.oaiusercontent.com/files/00000000-b390-8210-8776-8ac14def8f83/raw?se=2026-10-01T10%3A58%3A17Z&sp=r&sv=2026-02-06&sr=b&scid=cfb2d3b3-fc0a-5a63-8af1-38e318d93ce9&skoid=40ce4b34-a373-4a62-b0bf-44befe221915&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-01T06%3A56%3A07Z&ske=2026-10-02T06%3A56%3A07Z&sks=b&skv=2026-02-06&sig=GdLprcNRXRCwaDA99MjeQ4lj2eCynzpfobLCShGJR30%3D",
-  "expected_products": 450
+  "expected_products": 450,
+  "retry": 1
 }
