@@ -27,21 +27,21 @@ jobs:
       - name: Download requested artifact
         run: |
           set -euo pipefail
-          python - <<'PY' > /tmp/request.env
+          python - <<'PY'
           import json
+          from pathlib import Path
           r=json.load(open('.pigu-publish-request.json',encoding='utf-8'))
           url=str(r.get('url') or '')
           expected=int(r.get('expected_products') or 0)
           if not url.startswith('https://') or expected < 1:
               raise SystemExit('Invalid publish request')
-          print('URL='+url)
-          print('EXPECTED='+str(expected))
+          Path('/tmp/pigu-url').write_text(url, encoding='utf-8')
+          Path('/tmp/expected').write_text(str(expected), encoding='utf-8')
           PY
-          source /tmp/request.env
+          URL="$(cat /tmp/pigu-url)"
           curl -fL --retry 3 --retry-delay 2 "$URL" -o /tmp/pigu.zip
           unzip -p /tmp/pigu.zip products.xml > /tmp/products.xml
           test -s /tmp/products.xml
-          echo "$EXPECTED" > /tmp/expected
 
       - name: Validate requested Pigu XML
         run: |
