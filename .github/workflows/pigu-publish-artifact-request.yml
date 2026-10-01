@@ -1,0 +1,84 @@
+name: Publish requested Pigu artifact
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .pigu-publish-request.json
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pigu-public-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Download requested artifact
+        run: |
+          set -euo pipefail
+          python - <<'PY' > /tmp/request.env
+          import json
+          r=json.load(open('.pigu-publish-request.json',encoding='utf-8'))
+          url=str(r.get('url') or '')
+          expected=int(r.get('expected_products') or 0)
+          if not url.startswith('https://') or expected < 1:
+              raise SystemExit('Invalid publish request')
+          print('URL='+url)
+          print('EXPECTED='+str(expected))
+          PY
+          source /tmp/request.env
+          curl -fL --retry 3 --retry-delay 2 "$URL" -o /tmp/pigu.zip
+          unzip -p /tmp/pigu.zip products.xml > /tmp/products.xml
+          test -s /tmp/products.xml
+          echo "$EXPECTED" > /tmp/expected
+
+      - name: Validate requested Pigu XML
+        run: |
+          python - <<'PY'
+          import xml.etree.ElementTree as ET
+          expected=int(open('/tmp/expected').read().strip())
+          root=ET.parse('/tmp/products.xml').getroot()
+          products=root.findall('product')
+          print('products',len(products))
+          if len(products) != expected:
+              raise SystemExit(f'Expected {expected}, got {len(products)}')
+          bad=[]
+          for idx,product in enumerate(products,1):
+              mod=product.find('./colours/colour/modifications/modification')
+              if mod is None:
+                  bad.append((idx,'missing modification')); continue
+              def txt(tag): return (mod.findtext(tag) or '').strip()
+              try: weight=float(txt('weight'))
+              except Exception: weight=0
+              ean=(mod.findtext('./attributes/barcodes/barcode') or '').strip()
+              images=product.findall('./colours/colour/images/image/url')
+              if weight <= 0 or txt('length')!='0.5' or txt('width')!='0.3' or txt('height')!='0.15' or not ean or len(images)<2:
+                  bad.append((idx,ean))
+          if bad:
+              raise SystemExit(f'{len(bad)} invalid rows; sample={bad[:10]}')
+          print('validated',len(products))
+          PY
+
+      - name: Publish Pigu aliases and consume request
+        run: |
+          set -euo pipefail
+          mkdir -p pigu
+          cp /tmp/products.xml pigu/products.xml
+          cp /tmp/products.xml pigu/feed.xml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pigu/products.xml pigu/feed.xml
+          git rm .pigu-publish-request.json
+          git commit -m "Publish requested Pigu feed artifact"
+          git push origin HEAD:main
