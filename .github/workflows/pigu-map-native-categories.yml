@@ -1,0 +1,188 @@
+name: Map Pigu native categories
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/pigu-map-native-categories.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pigu-native-category-map
+  cancel-in-progress: true
+
+jobs:
+  map:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Map supplier categories to Pigu categories
+        run: |
+          python - <<'PY'
+          import html, json, re, unicodedata
+          from collections import Counter
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+
+          PIGU = {
+              "2621": "Lavinamieji žaislai",
+              "2624": "Žaislai mergaitėms",
+              "2627": "Žaislai berniukams",
+              "2630": "Konstruktoriai ir kaladėlės",
+              "2615": "Visi kūdikių žaislai",
+              "15025": "Kramtukai",
+              "18217": "Minkšti (pliušiniai) žaislai",
+              "23041": "Robotai",
+              "5996": "Vandens, smėlio ir paplūdimio žaislai",
+              "12100": "Stalo žaidimai, galvosūkiai",
+              "12085": "Lauko žaidimai",
+              "3233": "Kuprinės mokyklai, sportiniai maišeliai",
+              "12235": "Sąsiuviniai ir popieriaus prekės",
+              "21388": "Papuošalų gamybai, vėrimui",
+              "17220": "Piešimo, tapybos, lipdymo reikmenys",
+              "267": "Žaidimų konsolės",
+              "4583": "Kalėdinės dekoracijos",
+              "21872": "Šmaikščios dovanos",
+              "14885": "Kitos fitneso prekės",
+          }
+
+          def fold(s):
+              s=unicodedata.normalize('NFKD', str(s or ''))
+              return ''.join(c for c in s if not unicodedata.combining(c)).lower()
+
+          def choose(name):
+              p=fold(name)
+              if not p or p == 'brak danych' or 'erotyka' in p:
+                  return None
+              if 'plecak' in p:
+                  return '3233'
+              if any(x in p for x in ('notesy', 'pamietniki', 'papiernicze')):
+                  return '12235'
+              if any(x in p for x in ('tworzenia bizuterii', 'koralik', 'bizuter')):
+                  return '21388'
+              if any(x in p for x in ('ozdoby swiateczne', 'boze narodzenie')):
+                  return '4583'
+              if 'zabawne gadzety' in p:
+                  return '21872'
+              if 'worki i gruszki treningowe' in p or '/boks/' in p:
+                  return '14885'
+              if 'gierki' in p or 'konsole i automaty' in p:
+                  return '267'
+              if 'gryz' in p:
+                  return '15025'
+              if 'dla niemowlat' in p:
+                  if 'pluszak' in p or 'maskotk' in p:
+                      return '18217'
+                  return '2615'
+              if 'maskotk' in p or 'pluszak' in p:
+                  return '18217'
+              if '/robot' in p or p.endswith('roboty'):
+                  return '23041'
+              if any(x in p for x in ('zabawki wodne', 'do kapieli', 'banki mydlane')):
+                  return '5996'
+              if any(x in p for x in ('/klocki', '> klocki', 'zabawki konstrukcyjne', 'zestawy konstrukcyjne')):
+                  return '2630'
+              if 'plastyczne' in p:
+                  return '17220'
+              if any(x in p for x in ('ukladanki', 'umyslowe', 'zabawki logiczne', 'sortery', 'montessori')):
+                  return '2621'
+              if 'zabawki zrecznosciowe' in p or 'gry zrecznosciowe' in p:
+                  return '12100'
+              if any(x in p for x in ('/jojo', 'ringo', 'dyski', 'bumerangi')):
+                  return '12085'
+              if 'lalki i akcesoria' in p:
+                  return '2624'
+              if any(x in p for x in ('edukacyjne', '/agd/', '/agd>', 'zabawki/agd')):
+                  return '2621'
+              if any(x in p for x in ('militarne', '/asg/', 'samochody i pojazdy', 'zdalnie sterowane', 'samoloty i pokrewne', 'majsterkowanie', 'akcesoria ogrodnicze')):
+                  return '2627'
+              if p.startswith('dom i ogrod/narzedzia'):
+                  return '2627'
+              if p.startswith('dziecko/') or p.startswith('import z allegro > dziecko'):
+                  return '2621'
+              return None
+
+          src=Path('pigu/products.xml').read_text(encoding='utf-8')
+          blocks=re.findall(r'(?s)  <product>.*?</product>', src)
+          if not blocks:
+              raise SystemExit('No products in pigu/products.xml')
+
+          mapped=[]
+          skipped=[]
+          counts=Counter()
+          source_counts=Counter()
+          for block in blocks:
+              mid=re.search(r'<category-id>(.*?)</category-id>', block, re.S)
+              mname=re.search(r'<category-name>(.*?)</category-name>', block, re.S)
+              mtitle=re.search(r'<title>(.*?)</title>', block, re.S)
+              old_id=html.unescape((mid.group(1) if mid else '').replace('<![CDATA[','').replace(']]>','')).strip()
+              old_name=html.unescape((mname.group(1) if mname else '').replace('<![CDATA[','').replace(']]>','')).strip()
+              title=html.unescape((mtitle.group(1) if mtitle else '').replace('<![CDATA[','').replace(']]>','')).strip()
+              cid=old_id if old_id in PIGU else choose(old_name)
+              if not cid:
+                  skipped.append({'supplier_category_id':old_id,'supplier_category':old_name,'title':title[:180]})
+                  continue
+              new=block
+              new=re.sub(r'<category-id>.*?</category-id>', f'<category-id>{cid}</category-id>', new, count=1, flags=re.S)
+              new=re.sub(r'<category-name>.*?</category-name>', f'<category-name><![CDATA[{PIGU[cid]}]]></category-name>', new, count=1, flags=re.S)
+              mapped.append(new)
+              counts[(cid,PIGU[cid])]+=1
+              source_counts[(old_id,old_name,cid,PIGU[cid])]+=1
+
+          out='<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n<products>\n'+'\n'.join(mapped)+'\n</products>\n'
+          ET.fromstring(out.encode('utf-8'))
+          Path('pigu/products.xml').write_text(out,encoding='utf-8')
+          Path('pigu/feed.xml').write_text(out,encoding='utf-8')
+          report={
+              'input_products':len(blocks),
+              'mapped_products':len(mapped),
+              'skipped_products':len(skipped),
+              'pigu_categories':[{'category_id':cid,'category_name':name,'products':n} for (cid,name),n in counts.most_common()],
+              'source_mapping':[{'supplier_category_id':sid,'supplier_category':sname,'pigu_category_id':cid,'pigu_category':pname,'products':n} for (sid,sname,cid,pname),n in source_counts.most_common()],
+              'skipped':skipped,
+          }
+          Path('pigu/category-mapping-report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(json.dumps({'input':len(blocks),'mapped':len(mapped),'skipped':len(skipped),'categories':len(counts)},ensure_ascii=False))
+          if len(mapped) < max(10, int(len(blocks)*0.95)):
+              raise SystemExit('Too many products would be skipped; refusing to publish')
+          PY
+
+      - name: Validate mapped feed
+        run: |
+          python - <<'PY'
+          import json, xml.etree.ElementTree as ET
+          from pathlib import Path
+          allowed={'2621','2624','2627','2630','2615','15025','18217','23041','5996','12100','12085','3233','12235','21388','17220','267','4583','21872','14885'}
+          root=ET.parse('pigu/products.xml').getroot()
+          products=root.findall('product')
+          bad=[]
+          for i,p in enumerate(products,1):
+              cid=(p.findtext('category-id') or '').strip()
+              if cid not in allowed:
+                  bad.append((i,cid))
+          if bad:
+              raise SystemExit(f'Non-Pigu category IDs remain: {bad[:20]}')
+          r=json.loads(Path('pigu/category-mapping-report.json').read_text(encoding='utf-8'))
+          if len(products) != int(r['mapped_products']):
+              raise SystemExit('Report/XML count mismatch')
+          print(f'validated_products={len(products)}')
+          PY
+
+      - name: Commit native Pigu feed
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pigu/products.xml pigu/feed.xml pigu/category-mapping-report.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Map Pigu products to native categories"
+            git push origin main
+          fi
