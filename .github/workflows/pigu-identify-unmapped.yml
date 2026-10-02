@@ -1,0 +1,55 @@
+name: Identify unmapped Pigu product
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/pigu-identify-unmapped.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  identify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: b2884461e7444248455fbd0f138029c7903cb771
+          fetch-depth: 1
+      - name: Extract Brak danych product
+        run: |
+          python - <<'PY'
+          import json, xml.etree.ElementTree as ET
+          from pathlib import Path
+          root=ET.parse('pigu/products.xml').getroot()
+          rows=[]
+          for p in root.findall('product'):
+              cid=(p.findtext('category-id') or '').strip()
+              name=(p.findtext('category-name') or '').strip()
+              if cid=='237' or name=='Brak danych':
+                  mod=p.find('./colours/colour/modifications/modification')
+                  rows.append({
+                    'category_id':cid,
+                    'category_name':name,
+                    'title':(p.findtext('title') or '').strip(),
+                    'barcode':((mod.findtext('./attributes/barcodes/barcode') if mod is not None else '') or '').strip(),
+                    'supplier_code':((mod.findtext('./attributes/supplier-code') if mod is not None else '') or '').strip(),
+                  })
+          Path('/tmp/unmapped-old.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(rows)
+          PY
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Commit result
+        run: |
+          cp /tmp/unmapped-old.json pigu/unmapped-old.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pigu/unmapped-old.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Record unmapped Pigu product"
+            git push origin main
+          fi
