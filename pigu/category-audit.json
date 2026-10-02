@@ -1,0 +1,471 @@
+{
+  "product_count": 450,
+  "category_count": 93,
+  "categories": [
+    {
+      "category_id": "247",
+      "category_name": "Dziecko/Zabawki/Zdalnie sterowane",
+      "products": 51
+    },
+    {
+      "category_id": "135",
+      "category_name": "Dziecko/Zabawki/Militarne/Pistolety",
+      "products": 41
+    },
+    {
+      "category_id": "133",
+      "category_name": "Dziecko/Zabawki/Militarne/Karabiny",
+      "products": 36
+    },
+    {
+      "category_id": "246",
+      "category_name": "Dziecko/Zabawki/Militarne",
+      "products": 35
+    },
+    {
+      "category_id": "250",
+      "category_name": "Dziecko/Zabawki/Samochody i pojazdy",
+      "products": 24
+    },
+    {
+      "category_id": "131",
+      "category_name": "Dziecko/Zabawki/Figurki",
+      "products": 13
+    },
+    {
+      "category_id": "169",
+      "category_name": "Dziecko/Zabawki/Samochody i pojazdy/Traktory",
+      "products": 11
+    },
+    {
+      "category_id": "49",
+      "category_name": "Import z Allegro > Dziecko > Zabawki > Klocki > Plastikowe",
+      "products": 9
+    },
+    {
+      "category_id": "24",
+      "category_name": "Import z Allegro > Dziecko > Zabawki > Zdalnie sterowane",
+      "products": 9
+    },
+    {
+      "category_id": "154",
+      "category_name": "Dziecko/Zabawki/Edukacyjne/Pomoce dydaktyczne/Lornetki",
+      "products": 8
+    },
+    {
+      "category_id": "224",
+      "category_name": "Dziecko/Artykuły szkolne/Artykuły papiernicze/Notesy, pamiętniki",
+      "products": 7
+    },
+    {
+      "category_id": "142",
+      "category_name": "Dziecko/Zabawki ogrodowe/Baseny i zabawki do wody/Zabawki wodne",
+      "products": 7
+    },
+    {
+      "category_id": "153",
+      "category_name": "Dziecko/Zabawki ogrodowe/Gry i zabawy/Bańki mydlane",
+      "products": 7
+    },
+    {
+      "category_id": "170",
+      "category_name": "Dziecko/Zabawki/Edukacyjne/Instrumenty muzyczne",
+      "products": 7
+    },
+    {
+      "category_id": "229",
+      "category_name": "Dziecko/Zabawki/Edukacyjne/Układanki/Montessori",
+      "products": 7
+    },
+    {
+      "category_id": "183",
+      "category_name": "Dziecko/Zabawki/Maskotki/Interaktywne/Pieski",
+      "products": 7
+    },
+    {
+      "category_id": "8",
+      "category_name": "Import z Allegro > Dziecko > Zabawki > Samochody i pojazdy",
+      "products": 7
+    },
+    {
+      "category_id": "203",
+      "category_name": "Dziecko/Zabawki/Majsterkowanie/Narzędzia",
+      "products": 6
+    },
+    {
+      "category_id": "238",
+      "category_name": "Dziecko/Zabawki/Maskotki/Interaktywne",
+      "products": 6
+    },
+    {
+      "category_id": "145",
+      "category_name": "Dziecko/Zabawki/Maskotki/Interaktywne/Misie",
+      "products": 6
+    },
+    {
+      "category_id": "242",
+      "category_name": "Dziecko/Zabawki/Pozostałe",
+      "products": 6
+    },
+    {
+      "category_id": "137",
+      "category_name": "Dziecko/Zabawki/Zabawki zręcznościowe/Gry zręcznościowe",
+      "products": 6
+    },
+    {
+      "category_id": "13",
+      "category_name": "Import z Allegro > Dziecko > Zabawki > Maskotki > Interaktywne",
+      "products": 6
+    },
+    {
+      "category_id": "146",
+      "category_name": "Dziecko/Zabawki/Zdalnie sterowane/Jeżdżące",
+      "products": 5
+    },
+    {
+      "category_id": "4",
+      "category_name": "Import z Allegro > Dziecko > Zabawki > Militarne",
+      "products": 5
+    },
+    {
+      "category_id": "251",
+      "category_name": "Dziecko/Zabawki ogrodowe/Akcesoria ogrodnicze/Narzędzia",
+      "products": 4
+    },
+    {
+      "category_id": "189",
+      "category_name": "Dziecko/Zabawki/Edukacyjne/Pozostałe",
+      "products": 4
+    },
+    {
+      "category_id": "138",
+      "category_name": "Dziecko/Zabawki/Lalki i akcesoria/Lalki/Barbie",
+      "products": 4
+    },
+    {
+      "category_id": "181",
+      "category_name": "Dziecko/Zabawki/Lalki i akcesoria/Pozostałe",
+      "products": 4
+    },
+    {
+      "category_id": "143",
+      "category_name": "Dziecko/Zabawki/Maskotki/Zwierzątka",
+      "products": 4
+    },
+    {
+      "category_id": "22",
+      "category_name": "Import z Allegro > Dziecko > Zabawki > Edukacyjne > Układanki > Montessori",
+      "products": 4
+    },
+    {
+      "category_id": "155",
+      "category_name": "Dziecko/Zabawki ogrodowe/Gry i zabawy/Jojo",
+      "products": 3
+    },
+    {
+      "category_id": "265",
+      "category_name": "Dziecko/Zabawki/Dla niemowląt/Książeczki",
+      "products": 3
+    },
+    {
+      "category_id": "204",
+      "category_name": "Dziecko/Zabawki/Dla niemowląt/Sensoryczne",
+      "products": 3
+    },
+    {
+      "category_id": "149",
+      "category_name": "Dziecko/Zabawki/Edukacyjne/Zabawki konstrukcyjne",
+      "products": 3
+    },
+    {
+      "category_id": "253",
+      "category_name": "Dziecko/Zabawki/Klocki/Plastikowe",
+      "products": 3
+    },
+    {
+      "category_id": "188",
+      "category_name": "Dziecko/Zabawki/Lalki i akcesoria/Głowy do stylizacji",
+      "products": 3
+    },
+    {
+      "category_id": "254",
+      "category_name": "Dziecko/Zabawki/Zabawki elektroniczne/Pozostałe",
+      "products": 3
+    },
+    {
+      "category_id": "36",
+      "category_name": "Import z Allegro > Elektronika > Konsole i automaty > 'Gierki' elektroniczne",
+      "products": 3
+    },
+    {
+      "category_id": "261",
+      "category_name": "Konsole i automaty/'Gierki' elektroniczne",
+      "products": 3
+    },
+    {
+      "category_id": "269",
+      "category_name": "Sport i turystyka/Sporty walki/Boks/Worki i gruszki treningowe",
+      "products": 3
+    },
+    {
+      "category_id": "239",
+      "category_name": "Dom i Ogród/Narzędzia/Pozostałe",
+      "products": 2
+    },
+    {
+      "category_id": "193",
+      "category_name": "Dziecko/Zabawki/Do kąpieli",
+      "products": 2
+    },
+    {
+      "category_id": "245",
+      "category_name": "Dziecko/Zabawki/Edukacyjne/Umysłowe/Zabawki logiczne",
+      "products": 2
+    },
+    {
+      "category_id": "232",
+      "category_name": "Dziecko/Zabawki/Lalki i akcesoria/Lalki/Pozostałe",
+      "products": 2
+    },
+    {
+      "category_id": "209",
+      "category_name": "Dziecko/Zabawki/Majsterkowanie/Warsztaty",
+      "products": 2
+    },
+    {
+      "category_id": "162",
+      "category_name": "Dziecko/Zabawki/Plastyczne/Zestawy do makijażu",
+      "products": 2
+    },
+    {
+      "category_id": "206",
+      "category_name": "Dziecko/Zabawki/Samochody i pojazdy/Autobusy i tramwaje",
+      "products": 2
+    },
+    {
+      "category_id": "171",
+      "category_name": "Dziecko/Zabawki/Samochody i pojazdy/Dźwigi",
+      "products": 2
+    },
+    {
+      "category_id": "134",
+      "category_name": "Dziecko/Zabawki/Samochody i pojazdy/Koparki",
+      "products": 2
+    },
+    {
+      "category_id": "160",
+      "category_name": "Dziecko/Zabawki/Zabawki elektroniczne/Tablety",
+      "products": 2
+    },
+    {
+      "category_id": "68",
+      "category_name": "Import z Allegro > Dziecko > Zabawki > Majsterkowanie > Narzędzia",
+      "products": 2
+    },
+    {
+      "category_id": "185",
+      "category_name": "Sport i turystyka/Militaria/ASG/Pistolety i rewolwery",
+      "products": 2
+    },
+    {
+      "category_id": "237",
+      "category_name": "Brak danych",
+      "products": 1
+    },
+    {
+      "category_id": "273",
+      "category_name": "Dom i Ogród/Wyposażenie/Zabawne gadżety",
+      "products": 1
+    },
+    {
+      "category_id": "243",
+      "category_name": "Dziecko/Okazje, przyjęcia/Dekoracje i gadżety/Pozostałe",
+      "products": 1
+    },
+    {
+      "category_id": "241",
+      "category_name": "Dziecko/Pokój dziecięcy/Wyposażenie/Dekoracje i ozdoby/Skarbonki",
+      "products": 1
+    },
+    {
+      "category_id": "223",
+      "category_name": "Dziecko/Zabawki/AGD/Kuchnie",
+      "products": 1
+    },
+    {
+      "category_id": "198",
+      "category_name": "Dziecko/Zabawki/AGD/Odkurzacze",
+      "products": 1
+    },
+    {
+      "category_id": "262",
+      "category_name": "Dziecko/Zabawki/AGD/Pozostałe",
+      "products": 1
+    },
+    {
+      "category_id": "258",
+      "category_name": "Dziecko/Zabawki/Antystresowe",
+      "products": 1
+    },
+    {
+      "category_id": "194",
+      "category_name": "Dziecko/Zabawki/Antystresowe/Gniotki",
+      "products": 1
+    },
+    {
+      "category_id": "132",
+      "category_name": "Dziecko/Zabawki/Dla niemowląt/Interaktywne/Pluszaki interaktywne",
+      "products": 1
+    },
+    {
+      "category_id": "182",
+      "category_name": "Dziecko/Zabawki/Edukacyjne/Odgrywanie ról",
+      "products": 1
+    },
+    {
+      "category_id": "148",
+      "category_name": "Dziecko/Zabawki/Edukacyjne/Układanki/Sortery",
+      "products": 1
+    },
+    {
+      "category_id": "220",
+      "category_name": "Dziecko/Zabawki/Majsterkowanie/Zestawy konstrukcyjne",
+      "products": 1
+    },
+    {
+      "category_id": "202",
+      "category_name": "Dziecko/Zabawki/Militarne/Miecze Świetlne",
+      "products": 1
+    },
+    {
+      "category_id": "173",
+      "category_name": "Dziecko/Zabawki/Plastyczne/Prace ręczne",
+      "products": 1
+    },
+    {
+      "category_id": "221",
+      "category_name": "Dziecko/Zabawki/Plastyczne/Projektory",
+      "products": 1
+    },
+    {
+      "category_id": "172",
+      "category_name": "Dziecko/Zabawki/Samochody i pojazdy/Betoniarki",
+      "products": 1
+    },
+    {
+      "category_id": "158",
+      "category_name": "Dziecko/Zabawki/Samochody i pojazdy/Ciężarówki",
+      "products": 1
+    },
+    {
+      "category_id": "211",
+      "category_name": "Dziecko/Zabawki/Samochody i pojazdy/Osobowe",
+      "products": 1
+    },
+    {
+      "category_id": "177",
+      "category_name": "Dziecko/Zabawki/Samochody i pojazdy/Pojazdy z bajek",
+      "products": 1
+    },
+    {
+      "category_id": "192",
+      "category_name": "Dziecko/Zabawki/Samochody i pojazdy/Tory samochodowe",
+      "products": 1
+    },
+    {
+      "category_id": "156",
+      "category_name": "Dziecko/Zabawki/Samochody i pojazdy/Wywrotki",
+      "products": 1
+    },
+    {
+      "category_id": "151",
+      "category_name": "Dziecko/Zabawki/Samochody i pojazdy/Zestawy",
+      "products": 1
+    },
+    {
+      "category_id": "210",
+      "category_name": "Dziecko/Zabawki/Samoloty i pokrewne/Helikoptery",
+      "products": 1
+    },
+    {
+      "category_id": "159",
+      "category_name": "Dziecko/Zabawki/Samoloty i pokrewne/Samoloty",
+      "products": 1
+    },
+    {
+      "category_id": "257",
+      "category_name": "Dziecko/Zabawki/Zabawki elektroniczne/Zestawy do karaoke",
+      "products": 1
+    },
+    {
+      "category_id": "178",
+      "category_name": "Dziecko/Zabawki/Zabawki zręcznościowe/Sportowe",
+      "products": 1
+    },
+    {
+      "category_id": "119",
+      "category_name": "Import z Allegro > Dziecko > Zabawki > AGD > Kuchnie",
+      "products": 1
+    },
+    {
+      "category_id": "99",
+      "category_name": "Import z Allegro > Dziecko > Zabawki > Dla niemowląt > Książeczki",
+      "products": 1
+    },
+    {
+      "category_id": "50",
+      "category_name": "Import z Allegro > Dziecko > Zabawki > Edukacyjne > Pozostałe",
+      "products": 1
+    },
+    {
+      "category_id": "37",
+      "category_name": "Import z Allegro > Dziecko > Zabawki > Edukacyjne > Zabawki konstrukcyjne",
+      "products": 1
+    },
+    {
+      "category_id": "55",
+      "category_name": "Import z Allegro > Dziecko > Zabawki > Figurki",
+      "products": 1
+    },
+    {
+      "category_id": "67",
+      "category_name": "Import z Allegro > Dziecko > Zabawki > Majsterkowanie > Warsztaty",
+      "products": 1
+    },
+    {
+      "category_id": "88",
+      "category_name": "Import z Allegro > Dziecko > Zabawki > Zabawki elektroniczne > Pozostałe",
+      "products": 1
+    },
+    {
+      "category_id": "64",
+      "category_name": "Import z Allegro > Dziecko > Zabawki > Zabawki zręcznościowe > Sportowe",
+      "products": 1
+    },
+    {
+      "category_id": "97",
+      "category_name": "Import z Allegro > Dziecko > Zabawki ogrodowe > Akcesoria ogrodnicze > Narzędzia",
+      "products": 1
+    },
+    {
+      "category_id": "87",
+      "category_name": "Import z Allegro > Sport i turystyka > Sporty walki > Boks > Worki i gruszki treningowe",
+      "products": 1
+    },
+    {
+      "category_id": "222",
+      "category_name": "Odzież, Obuwie, Dodatki/Ślub i wesele/Dekoracje ślubne/Bańki mydlane",
+      "products": 1
+    },
+    {
+      "category_id": "166",
+      "category_name": "Rękodzieło/Biżuteria - półprodukty/Zestawy do tworzenia biżuterii",
+      "products": 1
+    },
+    {
+      "category_id": "179",
+      "category_name": "Sport i turystyka/Militaria/ASG/Kulki ASG",
+      "products": 1
+    }
+  ]
+}
