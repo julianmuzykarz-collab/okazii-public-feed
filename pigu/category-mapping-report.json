@@ -1,0 +1,735 @@
+{
+  "input_products": 450,
+  "mapped_products": 449,
+  "skipped_products": 1,
+  "pigu_categories": [
+    {
+      "category_id": "2627",
+      "category_name": "Žaislai berniukams",
+      "products": 261
+    },
+    {
+      "category_id": "2621",
+      "category_name": "Lavinamieji žaislai",
+      "products": 70
+    },
+    {
+      "category_id": "18217",
+      "category_name": "Minkšti (pliušiniai) žaislai",
+      "products": 30
+    },
+    {
+      "category_id": "5996",
+      "category_name": "Vandens, smėlio ir paplūdimio žaislai",
+      "products": 17
+    },
+    {
+      "category_id": "2630",
+      "category_name": "Konstruktoriai ir kaladėlės",
+      "products": 17
+    },
+    {
+      "category_id": "2624",
+      "category_name": "Žaislai mergaitėms",
+      "products": 13
+    },
+    {
+      "category_id": "12100",
+      "category_name": "Stalo žaidimai, galvosūkiai",
+      "products": 8
+    },
+    {
+      "category_id": "12235",
+      "category_name": "Sąsiuviniai ir popieriaus prekės",
+      "products": 7
+    },
+    {
+      "category_id": "2615",
+      "category_name": "Visi kūdikių žaislai",
+      "products": 7
+    },
+    {
+      "category_id": "267",
+      "category_name": "Žaidimų konsolės",
+      "products": 6
+    },
+    {
+      "category_id": "17220",
+      "category_name": "Piešimo, tapybos, lipdymo reikmenys",
+      "products": 4
+    },
+    {
+      "category_id": "14885",
+      "category_name": "Kitos fitneso prekės",
+      "products": 4
+    },
+    {
+      "category_id": "12085",
+      "category_name": "Lauko žaidimai",
+      "products": 3
+    },
+    {
+      "category_id": "21388",
+      "category_name": "Papuošalų gamybai, vėrimui",
+      "products": 1
+    },
+    {
+      "category_id": "21872",
+      "category_name": "Šmaikščios dovanos",
+      "products": 1
+    }
+  ],
+  "source_mapping": [
+    {
+      "supplier_category_id": "247",
+      "supplier_category": "Dziecko/Zabawki/Zdalnie sterowane",
+      "pigu_category_id": "2627",
+      "pigu_category": "Žaislai berniukams",
+      "products": 51
+    },
+    {
+      "supplier_category_id": "135",
+      "supplier_category": "Dziecko/Zabawki/Militarne/Pistolety",
+      "pigu_category_id": "2627",
+      "pigu_category": "Žaislai berniukams",
+      "products": 41
+    },
+    {
+      "supplier_category_id": "133",
+      "supplier_category": "Dziecko/Zabawki/Militarne/Karabiny",
+      "pigu_category_id": "2627",
+      "pigu_category": "Žaislai berniukams",
+      "products": 36
+    },
+    {
+      "supplier_category_id": "246",
+      "supplier_category": "Dziecko/Zabawki/Militarne",
+      "pigu_category_id": "2627",
+      "pigu_category": "Žaislai berniukams",
+      "products": 35
+    },
+    {
+      "supplier_category_id": "250",
+      "supplier_category": "Dziecko/Zabawki/Samochody i pojazdy",
+      "pigu_category_id": "2627",
+      "pigu_category": "Žaislai berniukams",
+      "products": 24
+    },
+    {
+      "supplier_category_id": "131",
+      "supplier_category": "Dziecko/Zabawki/Figurki",
+      "pigu_category_id": "2621",
+      "pigu_category": "Lavinamieji žaislai",
+      "products": 13
+    },
+    {
+      "supplier_category_id": "169",
+      "supplier_category": "Dziecko/Zabawki/Samochody i pojazdy/Traktory",
+      "pigu_category_id": "2627",
+      "pigu_category": "Žaislai berniukams",
+      "products": 11
+    },
+    {
+      "supplier_category_id": "24",
+      "supplier_category": "Import z Allegro > Dziecko > Zabawki > Zdalnie sterowane",
+      "pigu_category_id": "2627",
+      "pigu_category": "Žaislai berniukams",
+      "products": 9
+    },
+    {
+      "supplier_category_id": "49",
+      "supplier_category": "Import z Allegro > Dziecko > Zabawki > Klocki > Plastikowe",
+      "pigu_category_id": "2630",
+      "pigu_category": "Konstruktoriai ir kaladėlės",
+      "products": 9
+    },
+    {
+      "supplier_category_id": "154",
+      "supplier_category": "Dziecko/Zabawki/Edukacyjne/Pomoce dydaktyczne/Lornetki",
+      "pigu_category_id": "2621",
+      "pigu_category": "Lavinamieji žaislai",
+      "products": 8
+    },
+    {
+      "supplier_category_id": "183",
+      "supplier_category": "Dziecko/Zabawki/Maskotki/Interaktywne/Pieski",
+      "pigu_category_id": "18217",
+      "pigu_category": "Minkšti (pliušiniai) žaislai",
+      "products": 7
+    },
+    {
+      "supplier_category_id": "170",
+      "supplier_category": "Dziecko/Zabawki/Edukacyjne/Instrumenty muzyczne",
+      "pigu_category_id": "2621",
+      "pigu_category": "Lavinamieji žaislai",
+      "products": 7
+    },
+    {
+      "supplier_category_id": "153",
+      "supplier_category": "Dziecko/Zabawki ogrodowe/Gry i zabawy/Bańki mydlane",
+      "pigu_category_id": "5996",
+      "pigu_category": "Vandens, smėlio ir paplūdimio žaislai",
+      "products": 7
+    },
+    {
+      "supplier_category_id": "224",
+      "supplier_category": "Dziecko/Artykuły szkolne/Artykuły papiernicze/Notesy, pamiętniki",
+      "pigu_category_id": "12235",
+      "pigu_category": "Sąsiuviniai ir popieriaus prekės",
+      "products": 7
+    },
+    {
+      "supplier_category_id": "142",
+      "supplier_category": "Dziecko/Zabawki ogrodowe/Baseny i zabawki do wody/Zabawki wodne",
+      "pigu_category_id": "5996",
+      "pigu_category": "Vandens, smėlio ir paplūdimio žaislai",
+      "products": 7
+    },
+    {
+      "supplier_category_id": "229",
+      "supplier_category": "Dziecko/Zabawki/Edukacyjne/Układanki/Montessori",
+      "pigu_category_id": "2621",
+      "pigu_category": "Lavinamieji žaislai",
+      "products": 7
+    },
+    {
+      "supplier_category_id": "8",
+      "supplier_category": "Import z Allegro > Dziecko > Zabawki > Samochody i pojazdy",
+      "pigu_category_id": "2627",
+      "pigu_category": "Žaislai berniukams",
+      "products": 7
+    },
+    {
+      "supplier_category_id": "145",
+      "supplier_category": "Dziecko/Zabawki/Maskotki/Interaktywne/Misie",
+      "pigu_category_id": "18217",
+      "pigu_category": "Minkšti (pliušiniai) žaislai",
+      "products": 6
+    },
+    {
+      "supplier_category_id": "203",
+      "supplier_category": "Dziecko/Zabawki/Majsterkowanie/Narzędzia",
+      "pigu_category_id": "2627",
+      "pigu_category": "Žaislai berniukams",
+      "products": 6
+    },
+    {
+      "supplier_category_id": "137",
+      "supplier_category": "Dziecko/Zabawki/Zabawki zręcznościowe/Gry zręcznościowe",
+      "pigu_category_id": "12100",
+      "pigu_category": "Stalo žaidimai, galvosūkiai",
+      "products": 6
+    },
+    {
+      "supplier_category_id": "238",
+      "supplier_category": "Dziecko/Zabawki/Maskotki/Interaktywne",
+      "pigu_category_id": "18217",
+      "pigu_category": "Minkšti (pliušiniai) žaislai",
+      "products": 6
+    },
+    {
+      "supplier_category_id": "242",
+      "supplier_category": "Dziecko/Zabawki/Pozostałe",
+      "pigu_category_id": "2621",
+      "pigu_category": "Lavinamieji žaislai",
+      "products": 6
+    },
+    {
+      "supplier_category_id": "13",
+      "supplier_category": "Import z Allegro > Dziecko > Zabawki > Maskotki > Interaktywne",
+      "pigu_category_id": "18217",
+      "pigu_category": "Minkšti (pliušiniai) žaislai",
+      "products": 6
+    },
+    {
+      "supplier_category_id": "146",
+      "supplier_category": "Dziecko/Zabawki/Zdalnie sterowane/Jeżdżące",
+      "pigu_category_id": "2627",
+      "pigu_category": "Žaislai berniukams",
+      "products": 5
+    },
+    {
+      "supplier_category_id": "4",
+      "supplier_category": "Import z Allegro > Dziecko > Zabawki > Militarne",
+      "pigu_category_id": "2627",
+      "pigu_category": "Žaislai berniukams",
+      "products": 5
+    },
+    {
+      "supplier_category_id": "138",
+      "supplier_category": "Dziecko/Zabawki/Lalki i akcesoria/Lalki/Barbie",
+      "pigu_category_id": "2624",
+      "pigu_category": "Žaislai mergaitėms",
+      "products": 4
+    },
+    {
+      "supplier_category_id": "143",
+      "supplier_category": "Dziecko/Zabawki/Maskotki/Zwierzątka",
+      "pigu_category_id": "18217",
+      "pigu_category": "Minkšti (pliušiniai) žaislai",
+      "products": 4
+    },
+    {
+      "supplier_category_id": "189",
+      "supplier_category": "Dziecko/Zabawki/Edukacyjne/Pozostałe",
+      "pigu_category_id": "2621",
+      "pigu_category": "Lavinamieji žaislai",
+      "products": 4
+    },
+    {
+      "supplier_category_id": "251",
+      "supplier_category": "Dziecko/Zabawki ogrodowe/Akcesoria ogrodnicze/Narzędzia",
+      "pigu_category_id": "2627",
+      "pigu_category": "Žaislai berniukams",
+      "products": 4
+    },
+    {
+      "supplier_category_id": "181",
+      "supplier_category": "Dziecko/Zabawki/Lalki i akcesoria/Pozostałe",
+      "pigu_category_id": "2624",
+      "pigu_category": "Žaislai mergaitėms",
+      "products": 4
+    },
+    {
+      "supplier_category_id": "22",
+      "supplier_category": "Import z Allegro > Dziecko > Zabawki > Edukacyjne > Układanki > Montessori",
+      "pigu_category_id": "2621",
+      "pigu_category": "Lavinamieji žaislai",
+      "products": 4
+    },
+    {
+      "supplier_category_id": "188",
+      "supplier_category": "Dziecko/Zabawki/Lalki i akcesoria/Głowy do stylizacji",
+      "pigu_category_id": "2624",
+      "pigu_category": "Žaislai mergaitėms",
+      "products": 3
+    },
+    {
+      "supplier_category_id": "204",
+      "supplier_category": "Dziecko/Zabawki/Dla niemowląt/Sensoryczne",
+      "pigu_category_id": "2615",
+      "pigu_category": "Visi kūdikių žaislai",
+      "products": 3
+    },
+    {
+      "supplier_category_id": "155",
+      "supplier_category": "Dziecko/Zabawki ogrodowe/Gry i zabawy/Jojo",
+      "pigu_category_id": "12085",
+      "pigu_category": "Lauko žaidimai",
+      "products": 3
+    },
+    {
+      "supplier_category_id": "254",
+      "supplier_category": "Dziecko/Zabawki/Zabawki elektroniczne/Pozostałe",
+      "pigu_category_id": "2621",
+      "pigu_category": "Lavinamieji žaislai",
+      "products": 3
+    },
+    {
+      "supplier_category_id": "261",
+      "supplier_category": "Konsole i automaty/'Gierki' elektroniczne",
+      "pigu_category_id": "267",
+      "pigu_category": "Žaidimų konsolės",
+      "products": 3
+    },
+    {
+      "supplier_category_id": "253",
+      "supplier_category": "Dziecko/Zabawki/Klocki/Plastikowe",
+      "pigu_category_id": "2630",
+      "pigu_category": "Konstruktoriai ir kaladėlės",
+      "products": 3
+    },
+    {
+      "supplier_category_id": "149",
+      "supplier_category": "Dziecko/Zabawki/Edukacyjne/Zabawki konstrukcyjne",
+      "pigu_category_id": "2630",
+      "pigu_category": "Konstruktoriai ir kaladėlės",
+      "products": 3
+    },
+    {
+      "supplier_category_id": "265",
+      "supplier_category": "Dziecko/Zabawki/Dla niemowląt/Książeczki",
+      "pigu_category_id": "2615",
+      "pigu_category": "Visi kūdikių žaislai",
+      "products": 3
+    },
+    {
+      "supplier_category_id": "269",
+      "supplier_category": "Sport i turystyka/Sporty walki/Boks/Worki i gruszki treningowe",
+      "pigu_category_id": "14885",
+      "pigu_category": "Kitos fitneso prekės",
+      "products": 3
+    },
+    {
+      "supplier_category_id": "36",
+      "supplier_category": "Import z Allegro > Elektronika > Konsole i automaty > 'Gierki' elektroniczne",
+      "pigu_category_id": "267",
+      "pigu_category": "Žaidimų konsolės",
+      "products": 3
+    },
+    {
+      "supplier_category_id": "171",
+      "supplier_category": "Dziecko/Zabawki/Samochody i pojazdy/Dźwigi",
+      "pigu_category_id": "2627",
+      "pigu_category": "Žaislai berniukams",
+      "products": 2
+    },
+    {
+      "supplier_category_id": "134",
+      "supplier_category": "Dziecko/Zabawki/Samochody i pojazdy/Koparki",
+      "pigu_category_id": "2627",
+      "pigu_category": "Žaislai berniukams",
+      "products": 2
+    },
+    {
+      "supplier_category_id": "185",
+      "supplier_category": "Sport i turystyka/Militaria/ASG/Pistolety i rewolwery",
+      "pigu_category_id": "2627",
+      "pigu_category": "Žaislai berniukams",
+      "products": 2
+    },
+    {
+      "supplier_category_id": "206",
+      "supplier_category": "Dziecko/Zabawki/Samochody i pojazdy/Autobusy i tramwaje",
+      "pigu_category_id": "2627",
+      "pigu_category": "Žaislai berniukams",
+      "products": 2
+    },
+    {
+      "supplier_category_id": "209",
+      "supplier_category": "Dziecko/Zabawki/Majsterkowanie/Warsztaty",
+      "pigu_category_id": "2627",
+      "pigu_category": "Žaislai berniukams",
+      "products": 2
+    },
+    {
+      "supplier_category_id": "193",
+      "supplier_category": "Dziecko/Zabawki/Do kąpieli",
+      "pigu_category_id": "5996",
+      "pigu_category": "Vandens, smėlio ir paplūdimio žaislai",
+      "products": 2
+    },
+    {
+      "supplier_category_id": "239",
+      "supplier_category": "Dom i Ogród/Narzędzia/Pozostałe",
+      "pigu_category_id": "2627",
+      "pigu_category": "Žaislai berniukams",
+      "products": 2
+    },
+    {
+      "supplier_category_id": "160",
+      "supplier_category": "Dziecko/Zabawki/Zabawki elektroniczne/Tablety",
+      "pigu_category_id": "2621",
+      "pigu_category": "Lavinamieji žaislai",
+      "products": 2
+    },
+    {
+      "supplier_category_id": "245",
+      "supplier_category": "Dziecko/Zabawki/Edukacyjne/Umysłowe/Zabawki logiczne",
+      "pigu_category_id": "2621",
+      "pigu_category": "Lavinamieji žaislai",
+      "products": 2
+    },
+    {
+      "supplier_category_id": "162",
+      "supplier_category": "Dziecko/Zabawki/Plastyczne/Zestawy do makijażu",
+      "pigu_category_id": "17220",
+      "pigu_category": "Piešimo, tapybos, lipdymo reikmenys",
+      "products": 2
+    },
+    {
+      "supplier_category_id": "232",
+      "supplier_category": "Dziecko/Zabawki/Lalki i akcesoria/Lalki/Pozostałe",
+      "pigu_category_id": "2624",
+      "pigu_category": "Žaislai mergaitėms",
+      "products": 2
+    },
+    {
+      "supplier_category_id": "68",
+      "supplier_category": "Import z Allegro > Dziecko > Zabawki > Majsterkowanie > Narzędzia",
+      "pigu_category_id": "2627",
+      "pigu_category": "Žaislai berniukams",
+      "products": 2
+    },
+    {
+      "supplier_category_id": "132",
+      "supplier_category": "Dziecko/Zabawki/Dla niemowląt/Interaktywne/Pluszaki interaktywne",
+      "pigu_category_id": "18217",
+      "pigu_category": "Minkšti (pliušiniai) žaislai",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "172",
+      "supplier_category": "Dziecko/Zabawki/Samochody i pojazdy/Betoniarki",
+      "pigu_category_id": "2627",
+      "pigu_category": "Žaislai berniukams",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "156",
+      "supplier_category": "Dziecko/Zabawki/Samochody i pojazdy/Wywrotki",
+      "pigu_category_id": "2627",
+      "pigu_category": "Žaislai berniukams",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "177",
+      "supplier_category": "Dziecko/Zabawki/Samochody i pojazdy/Pojazdy z bajek",
+      "pigu_category_id": "2627",
+      "pigu_category": "Žaislai berniukams",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "179",
+      "supplier_category": "Sport i turystyka/Militaria/ASG/Kulki ASG",
+      "pigu_category_id": "2627",
+      "pigu_category": "Žaislai berniukams",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "192",
+      "supplier_category": "Dziecko/Zabawki/Samochody i pojazdy/Tory samochodowe",
+      "pigu_category_id": "2627",
+      "pigu_category": "Žaislai berniukams",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "151",
+      "supplier_category": "Dziecko/Zabawki/Samochody i pojazdy/Zestawy",
+      "pigu_category_id": "2627",
+      "pigu_category": "Žaislai berniukams",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "202",
+      "supplier_category": "Dziecko/Zabawki/Militarne/Miecze Świetlne",
+      "pigu_category_id": "2627",
+      "pigu_category": "Žaislai berniukams",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "210",
+      "supplier_category": "Dziecko/Zabawki/Samoloty i pokrewne/Helikoptery",
+      "pigu_category_id": "2627",
+      "pigu_category": "Žaislai berniukams",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "211",
+      "supplier_category": "Dziecko/Zabawki/Samochody i pojazdy/Osobowe",
+      "pigu_category_id": "2627",
+      "pigu_category": "Žaislai berniukams",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "222",
+      "supplier_category": "Odzież, Obuwie, Dodatki/Ślub i wesele/Dekoracje ślubne/Bańki mydlane",
+      "pigu_category_id": "5996",
+      "pigu_category": "Vandens, smėlio ir paplūdimio žaislai",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "159",
+      "supplier_category": "Dziecko/Zabawki/Samoloty i pokrewne/Samoloty",
+      "pigu_category_id": "2627",
+      "pigu_category": "Žaislai berniukams",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "158",
+      "supplier_category": "Dziecko/Zabawki/Samochody i pojazdy/Ciężarówki",
+      "pigu_category_id": "2627",
+      "pigu_category": "Žaislai berniukams",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "221",
+      "supplier_category": "Dziecko/Zabawki/Plastyczne/Projektory",
+      "pigu_category_id": "17220",
+      "pigu_category": "Piešimo, tapybos, lipdymo reikmenys",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "148",
+      "supplier_category": "Dziecko/Zabawki/Edukacyjne/Układanki/Sortery",
+      "pigu_category_id": "2621",
+      "pigu_category": "Lavinamieji žaislai",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "194",
+      "supplier_category": "Dziecko/Zabawki/Antystresowe/Gniotki",
+      "pigu_category_id": "2621",
+      "pigu_category": "Lavinamieji žaislai",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "243",
+      "supplier_category": "Dziecko/Okazje, przyjęcia/Dekoracje i gadżety/Pozostałe",
+      "pigu_category_id": "2621",
+      "pigu_category": "Lavinamieji žaislai",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "182",
+      "supplier_category": "Dziecko/Zabawki/Edukacyjne/Odgrywanie ról",
+      "pigu_category_id": "2621",
+      "pigu_category": "Lavinamieji žaislai",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "223",
+      "supplier_category": "Dziecko/Zabawki/AGD/Kuchnie",
+      "pigu_category_id": "2621",
+      "pigu_category": "Lavinamieji žaislai",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "166",
+      "supplier_category": "Rękodzieło/Biżuteria - półprodukty/Zestawy do tworzenia biżuterii",
+      "pigu_category_id": "21388",
+      "pigu_category": "Papuošalų gamybai, vėrimui",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "257",
+      "supplier_category": "Dziecko/Zabawki/Zabawki elektroniczne/Zestawy do karaoke",
+      "pigu_category_id": "2621",
+      "pigu_category": "Lavinamieji žaislai",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "258",
+      "supplier_category": "Dziecko/Zabawki/Antystresowe",
+      "pigu_category_id": "2621",
+      "pigu_category": "Lavinamieji žaislai",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "178",
+      "supplier_category": "Dziecko/Zabawki/Zabawki zręcznościowe/Sportowe",
+      "pigu_category_id": "12100",
+      "pigu_category": "Stalo žaidimai, galvosūkiai",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "262",
+      "supplier_category": "Dziecko/Zabawki/AGD/Pozostałe",
+      "pigu_category_id": "2621",
+      "pigu_category": "Lavinamieji žaislai",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "173",
+      "supplier_category": "Dziecko/Zabawki/Plastyczne/Prace ręczne",
+      "pigu_category_id": "17220",
+      "pigu_category": "Piešimo, tapybos, lipdymo reikmenys",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "241",
+      "supplier_category": "Dziecko/Pokój dziecięcy/Wyposażenie/Dekoracje i ozdoby/Skarbonki",
+      "pigu_category_id": "2621",
+      "pigu_category": "Lavinamieji žaislai",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "198",
+      "supplier_category": "Dziecko/Zabawki/AGD/Odkurzacze",
+      "pigu_category_id": "2621",
+      "pigu_category": "Lavinamieji žaislai",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "220",
+      "supplier_category": "Dziecko/Zabawki/Majsterkowanie/Zestawy konstrukcyjne",
+      "pigu_category_id": "2630",
+      "pigu_category": "Konstruktoriai ir kaladėlės",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "273",
+      "supplier_category": "Dom i Ogród/Wyposażenie/Zabawne gadżety",
+      "pigu_category_id": "21872",
+      "pigu_category": "Šmaikščios dovanos",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "67",
+      "supplier_category": "Import z Allegro > Dziecko > Zabawki > Majsterkowanie > Warsztaty",
+      "pigu_category_id": "2627",
+      "pigu_category": "Žaislai berniukams",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "37",
+      "supplier_category": "Import z Allegro > Dziecko > Zabawki > Edukacyjne > Zabawki konstrukcyjne",
+      "pigu_category_id": "2630",
+      "pigu_category": "Konstruktoriai ir kaladėlės",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "99",
+      "supplier_category": "Import z Allegro > Dziecko > Zabawki > Dla niemowląt > Książeczki",
+      "pigu_category_id": "2615",
+      "pigu_category": "Visi kūdikių žaislai",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "97",
+      "supplier_category": "Import z Allegro > Dziecko > Zabawki ogrodowe > Akcesoria ogrodnicze > Narzędzia",
+      "pigu_category_id": "2627",
+      "pigu_category": "Žaislai berniukams",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "50",
+      "supplier_category": "Import z Allegro > Dziecko > Zabawki > Edukacyjne > Pozostałe",
+      "pigu_category_id": "2621",
+      "pigu_category": "Lavinamieji žaislai",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "88",
+      "supplier_category": "Import z Allegro > Dziecko > Zabawki > Zabawki elektroniczne > Pozostałe",
+      "pigu_category_id": "2621",
+      "pigu_category": "Lavinamieji žaislai",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "119",
+      "supplier_category": "Import z Allegro > Dziecko > Zabawki > AGD > Kuchnie",
+      "pigu_category_id": "2621",
+      "pigu_category": "Lavinamieji žaislai",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "55",
+      "supplier_category": "Import z Allegro > Dziecko > Zabawki > Figurki",
+      "pigu_category_id": "2621",
+      "pigu_category": "Lavinamieji žaislai",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "87",
+      "supplier_category": "Import z Allegro > Sport i turystyka > Sporty walki > Boks > Worki i gruszki treningowe",
+      "pigu_category_id": "14885",
+      "pigu_category": "Kitos fitneso prekės",
+      "products": 1
+    },
+    {
+      "supplier_category_id": "64",
+      "supplier_category": "Import z Allegro > Dziecko > Zabawki > Zabawki zręcznościowe > Sportowe",
+      "pigu_category_id": "12100",
+      "pigu_category": "Stalo žaidimai, galvosūkiai",
+      "products": 1
+    }
+  ],
+  "skipped": [
+    {
+      "supplier_category_id": "237",
+      "supplier_category": "Brak danych",
+      "title": "Interaktyvi Vaikų Kasos Aparatas su Priedais"
+    }
+  ]
+}
