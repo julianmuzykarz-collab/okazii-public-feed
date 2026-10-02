@@ -1,0 +1,51 @@
+name: Audit Pigu supplier categories
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/pigu-category-audit.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pigu-category-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Collect categories
+        run: |
+          python - <<'PY'
+          import json
+          from collections import Counter
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+          root=ET.parse('pigu/products.xml').getroot()
+          c=Counter()
+          for p in root.findall('product'):
+              cid=(p.findtext('category-id') or '').strip()
+              name=(p.findtext('category-name') or '').strip()
+              c[(cid,name)]+=1
+          rows=[{'category_id':cid,'category_name':name,'products':n} for (cid,name),n in sorted(c.items(), key=lambda x:(-x[1],x[0][1]))]
+          Path('pigu/category-audit.json').write_text(json.dumps({'product_count':sum(c.values()),'category_count':len(rows),'categories':rows},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(f'products={sum(c.values())} categories={len(rows)}')
+          PY
+      - name: Commit audit
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pigu/category-audit.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Audit Pigu supplier categories"
+            git push origin main
+          fi
