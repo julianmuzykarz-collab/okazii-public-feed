@@ -1,0 +1,87 @@
+name: Restore final mapped Pigu product
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/pigu-restore-cash-register.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: b2884461e7444248455fbd0f138029c7903cb771
+          fetch-depth: 1
+      - name: Extract and map product
+        run: |
+          python - <<'PY'
+          import re
+          from pathlib import Path
+          src=Path('pigu/products.xml').read_text(encoding='utf-8')
+          blocks=re.findall(r'(?s)  <product>.*?</product>',src)
+          target=None
+          for b in blocks:
+              if '5907182910361' in b:
+                  target=b
+                  break
+          if not target:
+              raise SystemExit('Product 5907182910361 not found in source snapshot')
+          target=re.sub(r'<category-id>.*?</category-id>','<category-id>2621</category-id>',target,count=1,flags=re.S)
+          target=re.sub(r'<category-name>.*?</category-name>','<category-name><![CDATA[Lavinamieji žaislai]]></category-name>',target,count=1,flags=re.S)
+          Path('/tmp/product.xmlpart').write_text(target,encoding='utf-8')
+          PY
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Append product and update report
+        run: |
+          python - <<'PY'
+          import json, re, xml.etree.ElementTree as ET
+          from pathlib import Path
+          block=Path('/tmp/product.xmlpart').read_text(encoding='utf-8')
+          for file in ('pigu/products.xml','pigu/feed.xml'):
+              p=Path(file); s=p.read_text(encoding='utf-8')
+              if '5907182910361' not in s:
+                  s=s.replace('\n</products>\n','\n'+block+'\n</products>\n')
+                  p.write_text(s,encoding='utf-8')
+              ET.fromstring(p.read_bytes())
+          rp=Path('pigu/category-mapping-report.json')
+          r=json.loads(rp.read_text(encoding='utf-8'))
+          r['mapped_products']=450
+          r['skipped_products']=0
+          r['skipped']=[]
+          found=False
+          for x in r.get('pigu_categories',[]):
+              if str(x.get('category_id'))=='2621':
+                  x['products']=int(x.get('products') or 0)+1
+                  found=True
+          if not found:
+              r.setdefault('pigu_categories',[]).append({'category_id':'2621','category_name':'Lavinamieji žaislai','products':1})
+          r.setdefault('source_mapping',[]).append({'supplier_category_id':'237','supplier_category':'Brak danych','pigu_category_id':'2621','pigu_category':'Lavinamieji žaislai','products':1,'resolved_by':'product title/barcode'})
+          rp.write_text(json.dumps(r,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          root=ET.parse('pigu/products.xml').getroot()
+          products=root.findall('product')
+          if len(products)!=450:
+              raise SystemExit(f'Expected 450 products, got {len(products)}')
+          allowed={'2621','2624','2627','2630','2615','15025','18217','23041','5996','12100','12085','3233','12235','21388','17220','267','4583','21872','14885'}
+          bad=[(i,(p.findtext('category-id') or '').strip()) for i,p in enumerate(products,1) if (p.findtext('category-id') or '').strip() not in allowed]
+          if bad:
+              raise SystemExit(f'Invalid category IDs: {bad[:20]}')
+          print('validated_products=450')
+          PY
+      - name: Commit completed mapping
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pigu/products.xml pigu/feed.xml pigu/category-mapping-report.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Complete Pigu native category mapping"
+            git push origin main
+          fi
