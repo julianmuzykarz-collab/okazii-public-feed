@@ -1,7 +1,7 @@
 {
   "input_products": 450,
-  "mapped_products": 449,
-  "skipped_products": 1,
+  "mapped_products": 450,
+  "skipped_products": 0,
   "pigu_categories": [
     {
       "category_id": "2627",
@@ -11,7 +11,7 @@
     {
       "category_id": "2621",
       "category_name": "Lavinamieji žaislai",
-      "products": 70
+      "products": 71
     },
     {
       "category_id": "18217",
@@ -723,13 +723,15 @@
       "pigu_category_id": "12100",
       "pigu_category": "Stalo žaidimai, galvosūkiai",
       "products": 1
-    }
-  ],
-  "skipped": [
+    },
     {
       "supplier_category_id": "237",
       "supplier_category": "Brak danych",
-      "title": "Interaktyvi Vaikų Kasos Aparatas su Priedais"
+      "pigu_category_id": "2621",
+      "pigu_category": "Lavinamieji žaislai",
+      "products": 1,
+      "resolved_by": "product title/barcode"
     }
-  ]
+  ],
+  "skipped": []
 }
