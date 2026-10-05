@@ -1,0 +1,73 @@
+name: Skip rejected Pigu product
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/pigu-drop-rejected-product.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  skip:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Remove rejected Y333-71 product
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+
+          token='Y333-71'
+          root=ET.parse('pigu/products.xml').getroot()
+          removed=[]
+          for p in list(root.findall('product')):
+              title=(p.findtext('title') or '').strip()
+              sku=(p.findtext('./colours/colour/modifications/modification/attributes/supplier-code') or '').strip()
+              barcode=(p.findtext('./colours/colour/modifications/modification/attributes/barcodes/barcode') or '').strip()
+              blob=(title+' '+sku).upper()
+              if token in blob:
+                  removed.append({'title':title,'supplier_code':sku,'barcode':barcode,'category_id':(p.findtext('category-id') or '').strip()})
+                  root.remove(p)
+          if not removed:
+              raise SystemExit(f'Could not find product containing {token}')
+          ET.indent(root, space='  ')
+          xml='<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'+ET.tostring(root,encoding='unicode')+'\n'
+          ET.fromstring(xml.encode('utf-8'))
+          Path('pigu/products.xml').write_text(xml,encoding='utf-8')
+          Path('pigu/feed.xml').write_text(xml,encoding='utf-8')
+          Path('pigu/rejected-products.json').write_text(json.dumps({'removed':removed,'remaining_products':len(root.findall('product'))},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(json.dumps({'removed':removed,'remaining':len(root.findall('product'))},ensure_ascii=False))
+          PY
+
+      - name: Validate feed
+        run: |
+          python - <<'PY'
+          import xml.etree.ElementTree as ET
+          allowed={'2621','2624','2627','2630','2615','15025','18217','23041','5996','12100','12085','3233','12235','21388','17220','267','4583','21872','14885'}
+          root=ET.parse('pigu/products.xml').getroot()
+          bad=[]
+          for i,p in enumerate(root.findall('product'),1):
+              cid=(p.findtext('category-id') or '').strip()
+              if cid not in allowed: bad.append((i,cid))
+          if bad: raise SystemExit(f'Unmapped categories: {bad[:20]}')
+          print(f'validated_products={len(root.findall("product"))}')
+          PY
+
+      - name: Commit filtered feed
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pigu/products.xml pigu/feed.xml pigu/rejected-products.json
+          git commit -m "Skip Pigu product rejected for barcode"
+          git push origin main
