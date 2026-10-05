@@ -41,7 +41,14 @@ jobs:
               total=0
               for i,d in enumerate(reversed(body), start=1):
                   total += d * (3 if i % 2 == 1 else 1)
-              return ((10 - (total % 10)) % 10) == check
+              if ((10 - (total % 10)) % 10) != check:
+                  return False
+              # PHH rejected a checksum-valid EAN-13 from the GS1 restricted-use
+              # 200-299 range (for example 2281303502776). Do not send these as
+              # marketplace product barcodes; skip the product instead.
+              if len(s) == 13 and s.startswith('2'):
+                  return False
+              return True
 
           src=Path('pigu/products.xml')
           root=ET.parse(src).getroot()
@@ -90,6 +97,6 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add pigu/products.xml pigu/feed.xml pigu/barcode-sanitize-report.json
           if ! git diff --cached --quiet; then
-            git commit -m "Remove invalid barcodes from Pigu feed"
+            git commit -m "Remove Pigu-rejected restricted barcodes"
             git push origin main
           fi
