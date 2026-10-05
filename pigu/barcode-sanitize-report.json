@@ -1,6 +1,212 @@
 {
-  "input_products": 450,
-  "kept_products": 450,
-  "removed_products": 0,
-  "removed": []
+  "input_products": 449,
+  "kept_products": 408,
+  "removed_products": 41,
+  "removed": [
+    {
+      "title": "Žaislinis pistoletas su slopintuvu ir 800 kamuoliukų DOVANŲ",
+      "supplier_code": "(C43+) + 800 bezszwowych",
+      "barcode": "2015102202625"
+    },
+    {
+      "title": "Interaktyvi žaislinė antis su garsu",
+      "supplier_code": "26-2",
+      "barcode": "2281304494834"
+    },
+    {
+      "title": "Kiaušinius dedanti višta - važiuojanti žaislinė priemonė vaikams",
+      "supplier_code": "X-135",
+      "barcode": "2281304882549"
+    },
+    {
+      "title": "SNIPERIO AUTOMATAS SU LENTYNELE IR LASERIU",
+      "supplier_code": "1977-5 + 800 KULEK",
+      "barcode": "2015102202731"
+    },
+    {
+      "title": "SAUGUS AUTOMATINIS PISTOLETAS SU GELIO KULKOMIS",
+      "supplier_code": "226C-A graffiti czarny",
+      "barcode": "2281301217757"
+    },
+    {
+      "title": "BARBIE STILIAUS MAMA IR KŪDIKIS SU PRIEDAIS",
+      "supplier_code": "KQ105A CZARNA",
+      "barcode": "2281303165162"
+    },
+    {
+      "title": "DIDELIS BETONO MAŠINOS ŽAISLAS",
+      "supplier_code": "227A",
+      "barcode": "2281304675936"
+    },
+    {
+      "title": "DIDELIS KRAUTUVAS ŽAIDIMŲ AUTOMOBILIS",
+      "supplier_code": "225A",
+      "barcode": "2281304675912"
+    },
+    {
+      "title": "Dainuojantis paukštis rašiklių organizatorius",
+      "supplier_code": "HL512B",
+      "barcode": "2281300917894"
+    },
+    {
+      "title": "INTERAKTYVUS KATINAS SU PAVADINIMU, EINANTIS IR MIAUKIANTIS",
+      "supplier_code": "YY199027",
+      "barcode": "2281304863128"
+    },
+    {
+      "title": "Žaislinis metalinis pistoletas su 800 plastiko kulkų",
+      "supplier_code": "C7",
+      "barcode": "2015102202243"
+    },
+    {
+      "title": "Žaislinis snaiperio karabinas su lazeriu 6mm",
+      "supplier_code": "993A",
+      "barcode": "2015102203097"
+    },
+    {
+      "title": "Guminiai kamuoliukai pistoletui 7-8mm 1000vnt.",
+      "supplier_code": "1188-17",
+      "barcode": "2281304643256"
+    },
+    {
+      "title": "Plastikiniai 6mm BB kamuoliukai 1000 vnt.",
+      "supplier_code": "MY1012P 1000SZT",
+      "barcode": "2281300843490"
+    },
+    {
+      "title": "DIDELIS KALNELIS su šunimis automatu šviesa žaidimas",
+      "supplier_code": "668-9",
+      "barcode": "2281303014316"
+    },
+    {
+      "title": "Interaktyvi šokanti, dainuojanti žiogas YJ-3008",
+      "supplier_code": "YJ-3008",
+      "barcode": "2281300488172"
+    },
+    {
+      "title": "Žaislinis šautuvas su lazeriu ir 1000 kamuoliukų",
+      "supplier_code": "0807-6 1000 kulek",
+      "barcode": "2015102201185"
+    },
+    {
+      "title": "DINOZAURAS RŪKANTIS, EINANTIS, ŽAIDŽIANTIS, ŠVIEČIANTIS",
+      "supplier_code": "3863",
+      "barcode": "2281300652542"
+    },
+    {
+      "title": "INTERAKTYVI BITĖS ŽAISLAS ŠOKA IR DAINUOJA",
+      "supplier_code": "YJ-3006",
+      "barcode": "2281300151465"
+    },
+    {
+      "title": "DIDELIS DVIGUBAS ŠVIESOS KALAVIJAS SU GARSO EFEKTAIS",
+      "supplier_code": "8808",
+      "barcode": "2281300957135"
+    },
+    {
+      "title": "Traktorius Kasinė su Varikliu - Ūkininko Žaislas",
+      "supplier_code": "666-155C",
+      "barcode": "2281303111893"
+    },
+    {
+      "title": "AUTO ROBOTAS DINOZAURAS, KURIS IŠSKLAIDOJA GARĄ, 2W1",
+      "supplier_code": "HG-884 MORO PIASKOWY",
+      "barcode": "2281304883089"
+    },
+    {
+      "title": "Karinis interaktyvus sraigtasparnis, važiuoja, šviečia, žaidžia",
+      "supplier_code": "F-6288B",
+      "barcode": "2281300706412"
+    },
+    {
+      "title": "INTERAKTYVUS PILKAS TRIUŠIS ŽAISLAS",
+      "supplier_code": "DY6788-51 DY6788-39 szary",
+      "barcode": "2281305698736"
+    },
+    {
+      "title": "6mm ASG kamuoliukai 500 vnt.",
+      "supplier_code": "JDL 500",
+      "barcode": "2281301384893"
+    },
+    {
+      "title": "Kalbantis kiškis - interaktyvi žaislas vaikams",
+      "supplier_code": "199007 biały",
+      "barcode": "2281304975272"
+    },
+    {
+      "title": "INTERAKTYVUS ŠUNS ANT PAVADĖLIO, EINANTIS IR KALBANTIS MOPSAS",
+      "supplier_code": "YY199012 mops",
+      "barcode": "2281304304768"
+    },
+    {
+      "title": "INTERAKTYVUS ŠUNS ANT PAVADĖLIO, EINANTIS IR KALBANTIS",
+      "supplier_code": "YY199011 corgi",
+      "barcode": "2281304300265"
+    },
+    {
+      "title": "METALINIS žaislinis pistoletas su 800 kamuoliukų nemokamai",
+      "supplier_code": "V1+ + 800",
+      "barcode": "2015102201475"
+    },
+    {
+      "title": "SAUGUS AUTOMATINIS PISTOLETAS SU GELIO KULKOMIS",
+      "supplier_code": "308C CZARNO BIAŁY",
+      "barcode": "2281301218020"
+    },
+    {
+      "title": "AUTOMATINIS ŠAUTUVAS SU GELIO KULKOMIS M416",
+      "supplier_code": "G960-6",
+      "barcode": "2281303958979"
+    },
+    {
+      "title": "Žaislinis šautuvas su lazeriniu taikikliu BB 6mm",
+      "supplier_code": "M775-1",
+      "barcode": "2015102203219"
+    },
+    {
+      "title": "ŽAISLINIS PISTOLETAS BB 6mm KARABINAS ASG",
+      "supplier_code": "C12",
+      "barcode": "2015102204094"
+    },
+    {
+      "title": "INTERAKTYVUS LĖKTUVAS SU GARSO IR ŠVIESOS EFEKTAIS",
+      "supplier_code": "SAMOLOT LX161",
+      "barcode": "2281300827223"
+    },
+    {
+      "title": "Metalinis žaislinis šautuvas su atrama",
+      "supplier_code": "proca metalowa 7085-18",
+      "barcode": "2281304236977"
+    },
+    {
+      "title": "ŽEMĖS ŪKIO TRAKTORIUS SU KULTIVATORIUM FARMER RINKINYS",
+      "supplier_code": "666-176C",
+      "barcode": "2281304281175"
+    },
+    {
+      "title": "METALINIS KOLORINGAS JOJO ŽAISLAS",
+      "supplier_code": "JOJO METALOWE 1SZT 71999-3",
+      "barcode": "2281303191239"
+    },
+    {
+      "title": "JOJO DINOZAUR SPALVINGAS ŠVIEČIANTIS VIRVĖS ŽAISLAS 1VNT",
+      "supplier_code": "JOJO DINOZAUR 1SZT 8299",
+      "barcode": "2281300120317"
+    },
+    {
+      "title": "JOJO EMOJI SPALVINGAS VIRVĖS ŽAISLAS SU ŠYPSENĖLĖMIS 1VNT",
+      "supplier_code": "JOJO EMOJI 1SZT 69999",
+      "barcode": "2281302373605"
+    },
+    {
+      "title": "DIDELĖ MAGIŠKA VAIVORYKŠTĖS METALINĖ SPRENDIMAS",
+      "supplier_code": "SPRĘŻYNKA MCS76-3P",
+      "barcode": "2281303738663"
+    },
+    {
+      "title": "Dainuojančių paukščių figūrėlės rašikliams",
+      "supplier_code": "PTAK HL513GH",
+      "barcode": "2281301712887"
+    }
+  ]
 }
