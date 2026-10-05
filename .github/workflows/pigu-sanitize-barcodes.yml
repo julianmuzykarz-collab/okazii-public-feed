@@ -1,0 +1,95 @@
+name: Sanitize Pigu barcodes
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/pigu-sanitize-barcodes.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pigu-sanitize-barcodes
+  cancel-in-progress: true
+
+jobs:
+  sanitize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Remove products with invalid GTIN
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+
+          def valid_gtin(value):
+              s=''.join(ch for ch in str(value or '') if ch.isdigit())
+              if len(s) not in (8,12,13,14):
+                  return False
+              digits=[int(x) for x in s]
+              body=digits[:-1]
+              check=digits[-1]
+              total=0
+              for i,d in enumerate(reversed(body), start=1):
+                  total += d * (3 if i % 2 == 1 else 1)
+              return ((10 - (total % 10)) % 10) == check
+
+          src=Path('pigu/products.xml')
+          root=ET.parse(src).getroot()
+          kept=[]
+          removed=[]
+          for product in list(root.findall('product')):
+              barcode=(product.findtext('./colours/colour/modifications/modification/attributes/barcodes/barcode') or '').strip()
+              title=(product.findtext('title') or '').strip()
+              sku=(product.findtext('./colours/colour/modifications/modification/attributes/supplier-code') or '').strip()
+              if not valid_gtin(barcode):
+                  removed.append({'title':title,'supplier_code':sku,'barcode':barcode})
+                  root.remove(product)
+              else:
+                  kept.append(product)
+
+          ET.indent(root, space='  ')
+          xml='<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'+ET.tostring(root, encoding='unicode')+'\n'
+          ET.fromstring(xml.encode('utf-8'))
+          Path('pigu/products.xml').write_text(xml,encoding='utf-8')
+          Path('pigu/feed.xml').write_text(xml,encoding='utf-8')
+          report={'input_products':len(kept)+len(removed),'kept_products':len(kept),'removed_products':len(removed),'removed':removed}
+          Path('pigu/barcode-sanitize-report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(json.dumps(report,ensure_ascii=False))
+          if not kept:
+              raise SystemExit('No valid Pigu products remain')
+          PY
+
+      - name: Validate categories remain mapped
+        run: |
+          python - <<'PY'
+          import xml.etree.ElementTree as ET
+          allowed={'2621','2624','2627','2630','2615','15025','18217','23041','5996','12100','12085','3233','12235','21388','17220','267','4583','21872','14885'}
+          root=ET.parse('pigu/products.xml').getroot()
+          bad=[]
+          for i,p in enumerate(root.findall('product'),1):
+              cid=(p.findtext('category-id') or '').strip()
+              if cid not in allowed: bad.append((i,cid))
+          if bad: raise SystemExit(f'Unmapped categories remain: {bad[:20]}')
+          print(f'validated_products={len(root.findall("product"))}')
+          PY
+
+      - name: Commit sanitized feed
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pigu/products.xml pigu/feed.xml pigu/barcode-sanitize-report.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Remove invalid barcodes from Pigu feed"
+            git push origin main
+          fi
