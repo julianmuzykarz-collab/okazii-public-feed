@@ -1,0 +1,26 @@
+name: Export Pigu XML attachment
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/export-pigu-xml.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Pigu XML exists
+        run: |
+          test -s pigu/products.xml
+      - name: Upload Pigu XML
+        uses: actions/upload-artifact@v4
+        with:
+          name: pigu-products-xml
+          path: pigu/products.xml
+          retention-days: 1
