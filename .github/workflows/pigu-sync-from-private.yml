@@ -1,0 +1,133 @@
+name: Pigu sync from private source
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '27 */6 * * *'
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/pigu-sync-from-private.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pigu-public-sync-from-private
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout public repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Download validated Pigu XML from private source
+        env:
+          GH_TOKEN: ${{ secrets.OKAZII_FEED_SYNC_TOKEN }}
+        run: |
+          set -euo pipefail
+          : "${GH_TOKEN:?Missing OKAZII_FEED_SYNC_TOKEN}"
+          curl --fail --location --silent --show-error --retry 3 --retry-delay 2 \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github.raw+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/julianmuzykarz-collab/sellasist-okazii-feed/contents/pigu_v1/products.xml?ref=main" \
+            -o /tmp/products.xml
+          test -s /tmp/products.xml
+
+      - name: Validate Pigu XML before publish
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+
+          p = Path('/tmp/products.xml')
+          root = ET.parse(p).getroot()
+          products = root.findall('product')
+          print('feed_products', len(products))
+
+          if len(products) < 10:
+              raise SystemExit('Refusing to publish fewer than 10 products')
+
+          bad = []
+          for idx, product in enumerate(products, 1):
+              mod = product.find('./colours/colour/modifications/modification')
+              if mod is None:
+                  bad.append((idx, 'missing modification'))
+                  continue
+
+              def txt(tag):
+                  return (mod.findtext(tag) or '').strip()
+
+              try:
+                  weight = float(txt('weight'))
+              except Exception:
+                  weight = 0
+
+              ean = (mod.findtext('./attributes/barcodes/barcode') or '').strip()
+              images = product.findall('./colours/colour/images/image/url')
+              category_id = (product.findtext('category-id') or '').strip()
+
+              if (
+                  weight <= 0
+                  or txt('length') != '0.5'
+                  or txt('width') != '0.3'
+                  or txt('height') != '0.15'
+                  or not ean
+                  or len(images) < 2
+                  or not category_id
+              ):
+                  bad.append((idx, {
+                      'ean': ean,
+                      'images': len(images),
+                      'weight': weight,
+                      'category_id': category_id,
+                  }))
+
+          if bad:
+              print('invalid_sample', bad[:20])
+              raise SystemExit(f'Refusing to publish: {len(bad)} invalid products')
+
+          print('validated_products', len(products))
+          PY
+
+      - name: Publish Pigu feed locally
+        run: |
+          set -euo pipefail
+          mkdir -p pigu
+          cp /tmp/products.xml pigu/products.xml
+          cp /tmp/products.xml pigu/feed.xml
+
+          git config user.name "pigu-public-sync[bot]"
+          git config user.email "actions@users.noreply.github.com"
+          git add pigu/products.xml pigu/feed.xml
+
+          if git diff --cached --quiet; then
+            echo "Pigu feed unchanged"
+            exit 0
+          fi
+
+          git commit -m "Sync Pigu feed from validated private source"
+
+          for attempt in 1 2 3; do
+            git fetch origin main
+            if ! git rebase --autostash origin/main; then
+              git rebase --abort || true
+              exit 1
+            fi
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep $((attempt * 3))
+          done
+
+          echo "::error::Unable to publish Pigu feed after 3 attempts"
+          exit 1
